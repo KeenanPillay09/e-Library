@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using e_Library.Core.Models;
+using e_Library.Core.ViewModels;
 using e_Library.DataAccess.InMemory;
 
 namespace MyShop.WebUI.Controllers
@@ -11,10 +12,13 @@ namespace MyShop.WebUI.Controllers
     public class BookManagerController : Controller
     {
         BookRepository context;
-
+        BookGenreRepository bookGenres;
+        BookAuthorRepository bookAuthors;
         public BookManagerController()
         {
             context = new BookRepository();
+            bookGenres = new BookGenreRepository();
+            bookAuthors = new BookAuthorRepository();
         }
         // GET: BookManager
         public ActionResult Index()
@@ -25,8 +29,12 @@ namespace MyShop.WebUI.Controllers
 
         public ActionResult Create()
         {
-            Book book = new Book();
-            return View(book);
+            BookManagerViewModel viewModel = new BookManagerViewModel();
+
+            viewModel.Book = new Book();
+            viewModel.BookGenres = bookGenres.Collection();
+            viewModel.BookAuthors = bookAuthors.Collection();
+            return View(viewModel);
         }
         [HttpPost]
         public ActionResult Create(Book book)
@@ -53,7 +61,11 @@ namespace MyShop.WebUI.Controllers
             }
             else
             {
-                return View(book);
+                BookManagerViewModel viewModel = new BookManagerViewModel();
+                viewModel.Book = book;
+                viewModel.BookGenres = bookGenres.Collection();
+                viewModel.BookAuthors = bookAuthors.Collection();
+                return View(viewModel);
             }
         }
         [HttpPost]
