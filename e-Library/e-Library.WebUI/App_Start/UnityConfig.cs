@@ -1,6 +1,7 @@
 using e_Library.Core.Contracts;
 using e_Library.Core.Models;
 using e_Library.DataAccess.InMemory;
+using e_Library.DataAccess.SQL;
 using System;
 
 using Unity;
@@ -45,9 +46,9 @@ namespace e_Library.WebUI
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
-            container.RegisterType<IRepository<Book>, InMemoryRepository<Book>>();
-            container.RegisterType<IRepository<BookGenre>, InMemoryRepository<BookGenre>>();
-            container.RegisterType<IRepository<BookAuthor>, InMemoryRepository<BookAuthor>>();
+            container.RegisterType<IRepository<Book>, SQLRepository<Book>>();
+            container.RegisterType<IRepository<BookGenre>, SQLRepository<BookGenre>>();
+            container.RegisterType<IRepository<BookAuthor>, SQLRepository<BookAuthor>>();
         }
     }
 }
