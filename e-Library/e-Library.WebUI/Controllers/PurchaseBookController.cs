@@ -1,5 +1,6 @@
 ﻿using e_Library.Core.Contracts;
 using e_Library.Core.Models;
+using e_Library.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,25 @@ namespace e_Library.WebUI.Controllers
             bookAuthors = bookAuthorContext;
         }
         // GET: PurchaseBook
-        public ActionResult Index()
+        public ActionResult Index(string Genre=null)
         {
-            List<Book> books = context.Collection().ToList();
-            return View(books);
+            List<Book> books;
+            List<BookGenre> genres = bookGenres.Collection().ToList();
+
+            if (Genre == null)
+            {
+                books = context.Collection().ToList();
+            }
+            else
+            {
+                books = context.Collection().Where(p => p.Genre == Genre).ToList();
+            }
+
+            BookListViewModel model = new BookListViewModel();
+            model.Books = books;
+            model.BookGenres = genres;
+
+            return View(model);
         }
 
         public ActionResult Details(string Id)

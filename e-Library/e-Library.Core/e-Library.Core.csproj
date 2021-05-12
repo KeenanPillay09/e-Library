@@ -49,6 +49,7 @@
     <Compile Include="Models\BookGenre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BookManagerViewModel.cs" />
+    <Compile Include="ViewModels\BookListViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
