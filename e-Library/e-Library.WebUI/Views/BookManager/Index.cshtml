@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<e_Library.Core.Models.Book>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Manage Books";
 }
 
-<h2>Index</h2>
+<h2>Manage Books</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Book", "Create")
 </p>
 <table class="table">
     <tr>
@@ -18,9 +18,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Author)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Description)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Genre)
         </th>
@@ -44,9 +44,9 @@
     <td>
         @Html.DisplayFor(modelItem => item.Author)
     </td>
-    <td>
+    @*<td>
         @Html.DisplayFor(modelItem => item.Description)
-    </td>
+    </td>*@
     <td>
         @Html.DisplayFor(modelItem => item.Genre)
     </td>
@@ -58,6 +58,7 @@
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+
         @Html.ActionLink("Delete", "Delete", new { id = item.Id })
     </td>
 </tr>

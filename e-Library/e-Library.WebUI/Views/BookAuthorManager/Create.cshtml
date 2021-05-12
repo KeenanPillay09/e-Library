@@ -1,10 +1,10 @@
 ﻿@model e_Library.Core.Models.BookAuthor
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Manage Authors";
 }
 
-<h2>Create</h2>
+    <h2>Manage Authors</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>BookAuthor</h4>
+        <h4>Add New Author</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
