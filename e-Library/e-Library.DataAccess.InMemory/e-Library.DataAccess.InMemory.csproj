@@ -42,9 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookAuthorRepository.cs" />
-    <Compile Include="BookGenreRepository.cs" />
-    <Compile Include="BookRepository.cs" />
     <Compile Include="InMemoryRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

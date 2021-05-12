@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Caching;
 using e_Library.Core.Models;
+using e_Library.Core.Contracts;
 
 namespace e_Library.DataAccess.InMemory
 {
-    public class InMemoryRepository<T> where T : BaseEntity //Placeholder which is a class containing BaseEntity
+    public class InMemoryRepository<T> : IRepository<T> where T : BaseEntity //Placeholder which is a class containing BaseEntity
     {
         ObjectCache cache = MemoryCache.Default;
         List<T> items; //Generic List

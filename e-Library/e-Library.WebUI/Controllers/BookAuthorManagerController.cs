@@ -5,16 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 using e_Library.Core.Models;
 using e_Library.DataAccess.InMemory;
+using e_Library.Core.Contracts;
 
 namespace e_Library.WebUI.Controllers
 {
     public class BookAuthorManagerController : Controller
     {
-        InMemoryRepository<BookAuthor> context;
+        IRepository<BookAuthor> context;
 
-        public BookAuthorManagerController()
+        public BookAuthorManagerController(IRepository<BookAuthor> context)
         {
-            context = new InMemoryRepository<BookAuthor>();
+            this.context = context;
         }
         // GET: BookAuthorManager
         public ActionResult Index()

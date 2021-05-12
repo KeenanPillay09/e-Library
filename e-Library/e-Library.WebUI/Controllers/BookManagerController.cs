@@ -6,22 +6,21 @@ using System.Web.Mvc;
 using e_Library.Core.Models;
 using e_Library.Core.ViewModels;
 using e_Library.DataAccess.InMemory;
+using e_Library.Core.Contracts;
 
 namespace MyShop.WebUI.Controllers
 {
     public class BookManagerController : Controller
     {
-        InMemoryRepository<Book> context;
-        InMemoryRepository<BookGenre> bookGenres;
-        InMemoryRepository<BookAuthor> bookAuthors;
-        //  BookRepository book;
-        //  BookGenreRepository bookGenres;
-        //  BookAuthorRepository bookAuthors;
-        public BookManagerController()
+        IRepository<Book> context;
+        IRepository<BookGenre> bookGenres;
+        IRepository<BookAuthor> bookAuthors;
+
+        public BookManagerController(IRepository<Book> bookContext, IRepository<BookGenre> bookGenreContext, IRepository<BookAuthor> bookAuthorContext) //Needs to inject Repositories from DI Container
         {
-            context = new InMemoryRepository<Book>();
-            bookGenres = new InMemoryRepository<BookGenre>();
-            bookAuthors = new InMemoryRepository<BookAuthor>();
+            context = bookContext;
+            bookGenres = bookGenreContext;
+            bookAuthors = bookAuthorContext;
         }
         // GET: BookManager
         public ActionResult Index()
