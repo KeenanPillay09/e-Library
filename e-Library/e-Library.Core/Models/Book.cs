@@ -8,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace e_Library.Core.Models
 {
-    public class Book
+    public class Book : BaseEntity
     {
-        public string Id { get; set; }
 
         [DisplayName("Book Name")]
         [StringLength(30)]
@@ -28,9 +27,5 @@ namespace e_Library.Core.Models
         public int Stock { get; set; }
         public string Image { get; set; }
 
-        public Book()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
     }
 }

@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace e_Library.Core.Models
 {
-    public class BookAuthor
+    public class BookAuthor : BaseEntity
     {
-        public string Id { get; set; }
         public string Author { get; set; }
 
-        public BookAuthor()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
     }
 }

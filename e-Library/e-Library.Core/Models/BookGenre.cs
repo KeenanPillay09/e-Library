@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace e_Library.Core.Models
 {
-    public class BookGenre
+    public class BookGenre : BaseEntity
     {
-        public string Id { get; set; }
         public string Genre { get; set; }
 
-        public BookGenre()
-        {
-            this.Id = Guid.NewGuid().ToString();
-        }
     }
 }

@@ -11,14 +11,17 @@ namespace MyShop.WebUI.Controllers
 {
     public class BookManagerController : Controller
     {
-        BookRepository context;
-        BookGenreRepository bookGenres;
-        BookAuthorRepository bookAuthors;
+        InMemoryRepository<Book> context;
+        InMemoryRepository<BookGenre> bookGenres;
+        InMemoryRepository<BookAuthor> bookAuthors;
+        //  BookRepository book;
+        //  BookGenreRepository bookGenres;
+        //  BookAuthorRepository bookAuthors;
         public BookManagerController()
         {
-            context = new BookRepository();
-            bookGenres = new BookGenreRepository();
-            bookAuthors = new BookAuthorRepository();
+            context = new InMemoryRepository<Book>();
+            bookGenres = new InMemoryRepository<BookGenre>();
+            bookAuthors = new InMemoryRepository<BookAuthor>();
         }
         // GET: BookManager
         public ActionResult Index()

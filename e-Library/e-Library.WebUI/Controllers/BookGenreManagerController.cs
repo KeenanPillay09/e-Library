@@ -10,11 +10,11 @@ namespace e_Library.WebUI.Controllers
 {
     public class BookGenreManagerController : Controller
     {
-        BookGenreRepository context;
+        InMemoryRepository<BookGenre> context;
 
         public BookGenreManagerController()
         {
-            context = new BookGenreRepository();
+            context = new InMemoryRepository<BookGenre>();
         }
         // GET: BookGenreManager
         public ActionResult Index()
