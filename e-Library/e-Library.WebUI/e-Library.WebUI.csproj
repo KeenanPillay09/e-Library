@@ -376,6 +376,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\BookImages\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

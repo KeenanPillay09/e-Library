@@ -7,6 +7,7 @@ using e_Library.Core.Models;
 using e_Library.Core.ViewModels;
 using e_Library.DataAccess.InMemory;
 using e_Library.Core.Contracts;
+using System.IO;
 
 namespace MyShop.WebUI.Controllers
 {
@@ -39,7 +40,7 @@ namespace MyShop.WebUI.Controllers
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Create(Book book)
+        public ActionResult Create(Book book,HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -47,6 +48,11 @@ namespace MyShop.WebUI.Controllers
             }
             else
             {
+                if (file != null)
+                {
+                    book.Image = book.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//BookImages//") + book.Image);
+                }
                 context.Insert(book);
                 context.Commit();
 
@@ -71,7 +77,7 @@ namespace MyShop.WebUI.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Edit(Book book, string Id)
+        public ActionResult Edit(Book book, string Id, HttpPostedFileBase file)
         {
             Book bookToEdit = context.Find(Id);
             if (bookToEdit == null)
@@ -85,11 +91,16 @@ namespace MyShop.WebUI.Controllers
                     return View(book);
                 }
 
+                if (file != null)
+                {
+                    bookToEdit.Image = book.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//BookImages//") + bookToEdit.Image);
+                }
+
                 bookToEdit.Name = book.Name;
                 bookToEdit.Author = book.Author;
                 bookToEdit.Genre = book.Genre;
                 bookToEdit.Description = book.Description;
-                bookToEdit.Image = book.Image;
                 bookToEdit.Stock = book.Stock;
                 bookToEdit.Price = book.Price;
 
