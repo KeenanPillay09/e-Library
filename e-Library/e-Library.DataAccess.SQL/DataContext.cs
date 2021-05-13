@@ -18,5 +18,7 @@ namespace e_Library.DataAccess.SQL
         public DbSet<Book> Books { get; set; }
         public DbSet<BookGenre> BookGenres { get; set; }
         public DbSet<BookAuthor> BookAuthors { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
+        public DbSet<BasketItem> BasketItems { get; set; }
     }
 }
