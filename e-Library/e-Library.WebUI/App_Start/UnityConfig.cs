@@ -2,6 +2,7 @@ using e_Library.Core.Contracts;
 using e_Library.Core.Models;
 using e_Library.DataAccess.InMemory;
 using e_Library.DataAccess.SQL;
+using e_Library.Services;
 using System;
 
 using Unity;
@@ -49,6 +50,9 @@ namespace e_Library.WebUI
             container.RegisterType<IRepository<Book>, SQLRepository<Book>>();
             container.RegisterType<IRepository<BookGenre>, SQLRepository<BookGenre>>();
             container.RegisterType<IRepository<BookAuthor>, SQLRepository<BookAuthor>>();
+            container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
+            container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
+            container.RegisterType<IBasketService, BasketService>();
         }
     }
 }

@@ -31,10 +31,10 @@
                 <p>@item.Author</p>
             </div>
             <div class="col-md-12">
-                <h4>R @item.Price</h4>
+                <h4>@String.Format("{0:c}", item.Price)</h4>
             </div>
             <div class="col-md-12">
-                <a href="#" class="btn btn-default">Add to Basket</a>
+                <a href="@Url.Action("AddToBasket", "Basket", new { Id=item.Id })" class="btn btn-default">Add to Basket</a>
             </div>
         </div>
     }
