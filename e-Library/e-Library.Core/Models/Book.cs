@@ -12,7 +12,7 @@ namespace e_Library.Core.Models
     {
 
         [DisplayName("Book Name")]
-        [StringLength(30)]
+        [StringLength(300)]
         public string Name { get; set; }
 
         [StringLength(30)]
