@@ -3,18 +3,19 @@
 @{
     ViewBag.Title = "Purchase Books";
 }
-    <h2>Purchase Books</h2>
+<h2>Purchase Books</h2>
 
-    <div class="col-md-2">
-        <h4>Filter by Genre</h4>
-        <div class="list-group">
-            @Html.ActionLink("All", "Index", null, new { @class = Request["Genre"] == null ? "list-group-item active" : "list-group-item" })
-            @foreach (var cat in Model.BookGenres)
-            {
-                @Html.ActionLink(cat.Genre, "Index", new { Genre = cat.Genre }, new { @class = Request["Genre"] == cat.Genre ? "list-group-item active" : "list-group-item" })
-            }
-        </div>
+<div class="col-md-2">
+    <h4>Filter by Genre</h4>
+    <div class="list-group">
+        @Html.ActionLink("All", "Index", null, new { @class = Request["Genre"] == null ? "list-group-item active" : "list-group-item" })
+        @foreach (var cat in Model.BookGenres)
+        {
+            @Html.ActionLink(cat.Genre, "Index", new { Genre = cat.Genre }, new { @class = Request["Genre"] == cat.Genre ? "list-group-item active" : "list-group-item" })
+        }
     </div>
+</div>
+
 <div class="col-md-10">
 
     @foreach (var item in Model.Books)
@@ -39,4 +40,4 @@
         </div>
     }
 </div>
-    <div class="col-md-12 clearfix" />
+<div class="col-md-12 clearfix" />
