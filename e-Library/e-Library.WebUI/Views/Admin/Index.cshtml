@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Admin";
+}
+
+<h2>Admin Pages</h2>
+
+<div class="col-md-6">
+    <h4>e-Library Website Manager</h4>
+    <div class="list-group">
+        @Html.ActionLink("Manage Books", "Index", "BookManager", null, new { @class = "list-group-item" })
+        @Html.ActionLink("Manage Genres", "Index", "BookGenreManager", null, new { @class = "list-group-item" })
+        @Html.ActionLink("Manage Authors", "Index", "BookAuthorManager", null, new { @class = "list-group-item" })
+    </div>
+</div>
+<div class="col-md-6">
+    <h4>Order Management</h4>
+    <div class="list-group">
+        @Html.ActionLink("Manage Orders", "Index", "OrderManager", null, new { @class = "list-group-item" })
+    </div>
+</div>
+<div class="col-md-12 clearfix"></div>
