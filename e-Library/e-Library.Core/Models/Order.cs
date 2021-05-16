@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace e_Library.Core.Models
 {
-    public class Customer : BaseEntity
+    public class Order: BaseEntity
     {
-        public string UserId { get; set; }
+        public Order()
+        {
+            this.OrderItems = new List<OrderItem>();
+        }
+
         [DisplayName("First Name")]
         [Required]
         public string FirstName { get; set; }
+
         [DisplayName("Last Name")]
         [Required]
         public string LastName { get; set; }
@@ -26,5 +31,7 @@ namespace e_Library.Core.Models
         [Required]
         [DisplayName("Zip Code")]
         public string ZipCode { get; set; }
+        public string OrderStatus { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
     }
 }
