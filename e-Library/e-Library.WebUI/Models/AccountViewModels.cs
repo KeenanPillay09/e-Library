@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using e_Library.Core.Models;
 
 namespace e_Library.WebUI.Models
 {
@@ -79,7 +81,27 @@ namespace e_Library.WebUI.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [DisplayName("Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        public string Street { get; set; }
+
+        [Required]
+        public string City { get; set; }
+
+        [Required]
+        [DisplayName("Zip Code")]
+        public string ZipCode { get; set; }
     }
+
+
 
     public class ResetPasswordViewModel
     {
