@@ -16,6 +16,48 @@
 
         protected override void Seed(e_Library.DataAccess.SQL.DataContext context)
         {
+            //Genre
+            var genres = new List<BookGenre>
+            {
+                new BookGenre {Genre ="Biographies & Memoirs"},
+                new BookGenre {Genre ="Health, Mind & Body"},
+                new BookGenre {Genre ="Romance"},
+                new BookGenre {Genre ="Children's Books"},
+                new BookGenre {Genre ="Fantasy & Science Fiction"},
+                new BookGenre {Genre ="Arts & Entertainment"},
+                new BookGenre {Genre ="Religion & Spirituality"},
+                new BookGenre {Genre ="Thriller & Horror"},
+                new BookGenre {Genre ="Computers & Technology"},
+                new BookGenre {Genre ="Crime & Mystery"},
+                new BookGenre {Genre ="Fiction & Literature"},
+            };
+
+            //Authors
+            var authors = new List<BookAuthor>
+            {
+            new BookAuthor {Author ="Ryan Blumenthal"},
+            new BookAuthor {Author ="Mosilo Mothepu"},
+            new BookAuthor {Author ="Raynor Winn"},
+            new BookAuthor {Author ="Ben Macintyre"},
+            new BookAuthor {Author ="Denise Fergus"},
+            new BookAuthor {Author ="Bill Bryson"},
+            new BookAuthor {Author ="Danielle Steel"},
+            new BookAuthor {Author ="AI J Venter"},
+            new BookAuthor {Author ="Robin Sharma"},
+            new BookAuthor {Author ="James Clear"},
+            new BookAuthor {Author ="Odette C Bell"},
+            new BookAuthor {Author ="Hayley McGregor"},
+            new BookAuthor {Author ="Holly Whitaker"},
+            new BookAuthor {Author ="William Shakespeare"},
+            new BookAuthor {Author ="Clare Pooley"},
+            new BookAuthor {Author ="Oprah Winfrey"},
+            new BookAuthor {Author ="Jeff Kinney"},
+            new BookAuthor {Author ="Robert Muchamore"},
+            new BookAuthor {Author ="Ebbe Dommisse"},
+            new BookAuthor {Author ="Glennon Doyle"},
+            new BookAuthor {Author ="Mathew McConaughey"},
+            };
+
             //Books
             var books = new List<Book>
             { 
@@ -246,7 +288,7 @@
                 Description = "Yin is the Savior of the ages. A young woman chosen to protect the world on its final day. Captain Yang has never met a woman like her. Impetuous, powerful, and determined, she’s too much to handle.",
                 Genre ="Science Fiction & Fantasy",Price = 180,Stock = 5 },
 
-                //Arts & Entertainment
+                //Arts & Entertainment (8 books)
                 new Book { Name = "A Short History of Everything Neatly", Author ="Bill Bryson",
                 Description = " Bill Bryson describes himself as a reluctant traveller, but even when he stays safely at home he can't contain his curiosity about the world around him. A Short History of Nearly Everything is his quest to understand everything that has happened from the Big Bang to the rise of civilization - how we got from there, being nothing at all, to here, being us.",
                 Genre ="Arts & Entertainment",Price = 151,Stock = 3 },
@@ -279,7 +321,7 @@
                 Description = "Bill Bryson’s first travel book, The Lost Continent, was unanimously acclaimed as one of the funniest books in years. In Neither Here nor There he brings his unique brand of humour to bear on Europe as he shoulders his backpack, keeps a tight hold on his wallet, and journeys from Hammerfest, the northernmost town on the continent, to Istanbul on the cusp of Asia. Fluent in, oh, at least one language, he retraces his travels as a student twenty years before.",
                 Genre ="Arts & Entertainment",Price = 140,Stock = 3 },
 
-                //Religion & Spirituality
+                //Religion & Spirituality (12 books)
                 new Book { Name = "Celebrating Marriage", Author ="T.D Jakes",
                 Description = "The fifth volume of the SIX PILLARS FROM EPHESIANS series is an examination of the marriage covenant of men and women and the church with Jesus. Here, T.D. Jakes explores this most intimate of relationships with the Lord, offering answers to key issues and struggles",
                 Genre ="Religion & Spirituality",Price = 85,Stock = 6 },
@@ -328,7 +370,7 @@
                 Description = "In a time when women carry more influence than any other generation, the power of prayer has never been more important to remind us that we do not have to bear our crosses alone. We need prayer to stand guard over our hearts and minds and over the hearts and minds of our families.Women today are shattering glass ceilings and forging new paths in the world. What Happens When a Woman Prays is a clarion call for women to continue their progressive march of empowerment by dreaming like their daughters and praying like their grandmothers.Through exploring the lives of 10 prayer - filled women of the Bible, Bishop Jakes emphasizes the life-changing power that women have when they find their identity, their strength, their healing, and their voices in Christ.",
                 Genre ="Religion & Spirituality",Price = 168,Stock = 3 },
 
-                //Biographies & Memoirs
+                //Biographies & Memoirs (12 books)
                 new Book { Name = "Agent Zigzag" , Author= "Ben Macintyre",
                 Description = "One December night in 1942, a Nazi parachutist landed in a Cambridgeshire field. His mission: to sabotage the British war effort. His name was Eddie Chapman, but he would shortly become MI5's Agent Zigzag. Dashing and louche, courageous and unpredictable, the traitor was a patriot inside, and the villain a hero. The problem for Chapman, his many lovers and his spymasters was knowing who he was. Ben Macintyre weaves together diaries, letters, photographs, memories and top-secret MI5 files to create the exhilarating account of Britain's most sensational double agent.",
                 Genre = "Biographies & Memoirs",Price = 103 , Stock = 3 },
@@ -340,7 +382,6 @@
                 new Book { Name = "Fortunes" , Author= "Ebbe Dommisse", 
                 Description = "A handful of Afrikaners have risen to the very top of the business world in South Africa in the past three decades, some of them now dollar billionaires with vast global business interests",
                 Genre= "Biographies & Memoirs",Price = 209 , Stock=4 },
-
 
                 new Book { Name = "Greenlights" , Author= "Matthew McConaughey", 
                 Description = "From the Academy Award®-winning actor, an unconventional memoir filled with raucous stories, outlaw wisdom, and lessons learned the hard way about living with greater satisfaction",
@@ -354,37 +395,31 @@
                 Description = "On 12th February 1993, Denise Fergus' life changed forever. As she was running errands at New Strand Shopping Centre, she let go of her two-year-old son's hand for a few seconds to take out her purse. Denise never saw her son again.”,",
                 Genre ="Biographies & Memoirs",Price = 101,Stock = 3 },
 
-
                 new Book { Name = "Quit Like A Woman", Author ="Holly Whitaker",
                 Description = "When Holly Whitaker started to look for a way to recover, the support systems she found for recovery where archaic and patriarchal. Urging drinkers towards a newfound humility is great if you're a man, but if you're a woman and not in a position to renounce privileges you never had, a whole other approach is needed",
                 Genre ="Biographies & Memoirs",Price = 104,Stock = 4 },
-
 
                 new Book { Name = "Teacher’s Pet", Author ="Hayley McGregor",
                 Description = "This is the shocking true story of a schoolgirl groomed by her teacher, and her courageous journey to heal the wrongs of her past.”,",
                 Genre ="Biographies & Memoirs",Price = 97,Stock = 3 },
 
-
                 new Book { Name = "The Sober Diaries", Author ="Clare Pooley",
                 Description = "BY THE AUTHOR OF NEW YORK TIMES BESTSELLER THE AUTHENTICITY PROJECT, THE BRAVE AND FUNNY MEMOIR THAT IS CHANGING LIVES.How one mother gave up drinking and started living. This is Bridget Jones Dries Out",
                 Genre ="Biographies & Memoirs",Price = 218,Stock = 4 },
-
 
                 new Book { Name = "The Wild Silence", Author ="Raynor Winn",
                 Description = "In 2016, days before they were unjustly evicted from their home, Raynor Winn was told her husband Moth was dying.Instead of giving up they embarked on a life-changing journey: walking the 630 - mile South West Coast Path, living by their wits, determination and love of nature.But all journeys must end and when the couple return to civilisation they find that four walls feel like a prison, cutting them off from the sea and sky that sustained them -that had saved Moth's life",
                 Genre ="Biographies & Memoirs",Price = 211,Stock = 3 },
 
-
                 new Book { Name = "Uncaptured", Author ="Mosilo Mothepu",
                 Description = "Facing criminal charges and bankruptcy, unemployed and deemed a political risk, Mothepu experienced first-hand the loneliness of whistleblowing. The effect on her mental and physical health was devastating. Now, in Uncaptured, she recounts this troubling yet seminal chapter in her life with honesty, humility and wry humour in the hope that others who find themselves in a similar situation will follow in her footsteps and speak truth to power ",
                 Genre ="Biographies & Memoirs",Price = 260,Stock = 4 },
-
 
                 new Book { Name = "Untamed", Author ="Glennon Doyle",
                 Description = "For many years, Glennon Doyle denied her discontent. Then, while speaking at a conference, she looked at a woman across the room and fell instantly in love. Three words flooded her mind: There. She. Is. At first, Glennon assumed these words came to her from on high but soon she realised they had come to her from within. This was the voice she had buried beneath decades of numbing addictions and social conditioning. Glennon decided to let go of the world's expectations of her and reclaim her true untamed self.",
                 Genre ="Biographies & Memoirs",Price = 213,Stock = 5 },
 
-                //Computers & Technology
+                //Computers & Technology (12 books)
                 new Book { Name = "A Tour of C++", Author ="Bjarne Stroustrup",
                 Description = "The C++11 standard allows programmers to express ideas more clearly, simply, and directly, and to write faster, more efficient code. Bjarne Stroustrup, the designer and original implementer of C++, thoroughly covers the details of this language and its use in his definitive reference, The C++ Programming Language, Fourth Edition.",
                 Genre ="Computers & Technology",Price = 207 ,Stock = 6 },
@@ -433,7 +468,7 @@
                 Description = "The bible of all fundamental algorithms and the work that taught many of today's software developers most of what they know about computer programming.",
                 Genre ="Computers & Technology",Price = 598,Stock = 7 },
 
-                //Thriller & Horror
+                //Thriller & Horror (12 books)
                 new Book { Name = "1st to Die", Author ="James Patterson ",
                 Description = "As the only woman homicide inspector in San Francisco, Lindsay Boxer has to be tough. But nothing she has seen prepares her for the horror of the honeymoon murders, when a brutal maniac begins viciously slaughtering newly wed couples on their wedding nights. Lindsay is sickened by the deaths, but her determination to bring the murderer to justice is threatened by her own personal tragedy.",
                 Genre ="Thriller & Horror",Price = 217,Stock = 5 },
@@ -482,41 +517,56 @@
                 Description = "The Mastermind is back and he's hot on detective Alex Cross's trail. His cold, taunting threats leave Alex angry and deeply concerned for his family's safety. Two joggers have been found dead in San Francisco - bitten and hung by their feet to drain the blood. ",
                 Genre ="Thriller & Horror",Price = 184,Stock = 0 },
 
+                //Health, Mind & Body (12 books)
+                new Book { Name = "The Path Made Clear", Author ="Oprah Winfrey",
+                Description ="Everyone has a purpose. And, according to Oprah Winfrey, 'Your real job in life is to figure out as soon as possible what that is, who you are meant to be, and begin to honour your calling in the best way possible.'",
+                Genre ="Health, Mind & Body", Price = 224, Stock= 4},
+
+                new Book { Name = "The Wisdom of Sundays", Author = "Oprah Winfrey",
+                Description =  "The Wisdom of Sundays features insightful selections from the most meaningful conversations between Oprah Winfrey and some of today's most admired thought leaders",
+                Genre = "Health, Mind & Body", Price = 224, Stock = 2},
+
+                new Book { Name ="What Happened to You?", Author =" Oprah Winfrey",
+                Description ="Oprah Winfrey and renowned brain development and trauma expert, Dr Bruce Perry, discuss the impact of trauma and adverse experiences and how healing must begin with a shift to asking 'What happened to you?' rather than 'What’s wrong with you?'",
+                Genre = "Health, Mind & Body", Price = 463, Stock= 5},
+
+                new Book { Name = "What I Know For Sure", Author = "Oprah Winfrey",
+                Description =  "Candid, moving, exhilarating, uplifting, and frequently humorous, the words Oprah shares in What I Know For Sure shimmer with the sort of truth that readers will turn to again and again.",
+                Genre = "Health, Mind & Body", Price = 182, Stock = 3},
+
+                new Book { Name ="Discover Your Destiny With The Monk Who Sold His Ferrari", Author ="Robin Sharma",
+                Description ="A potent pathway to self-awakening that will help you to live your greatest life and claim the happiness, prosperity and inner peace that you deserve. From the author of the international bestseller, The Monk Who Sold His Ferrari",
+                Genre ="Health, Mind & Body" , Price = 119, Stock = 3},
+
+                new Book { Name = "The Monk Who Sold his Ferrari", Author = "Robin Sharma",
+                Description = "An internationally bestselling fable about a spiritual journey, littered with powerful life lessons that teach us how to abandon consumerism in order to embrace destiny, live life to the full and discover joy.",
+                Genre ="Health, Mind & Body", Price = 67, Stock = 5 },
+
+                new Book { Name = "Life Lessons", Author ="Robin Sharma",
+                Description ="101 inspirational lessons on how to achieve true happiness, find fulfilment and live peacefully and meaningfully every day, from Robin Sharma, leading life coach and author of the multi-million-copy bestseller The Monk Who Sold His Ferrari.",
+                Genre = "Health, Mind & Body", Price = 116, Stock = 2},
+
+                new Book { Name = "The 5 AM Club", Author = "Robin Sharma",
+                Description = "Legendary leadership and elite performance expert Robin Sharma introduced The 5am Club concept over twenty years ago, based on a revolutionary morning routine that has helped his clients maximize their productivity, activate their best health and bulletproof their serenity in this age of overwhelming complexity.",
+                Genre = "Health, Mind & Body" , Price = 323 , Stock = 6},
+
+                new Book { Name = "The Greatness Guide", Author ="Robin Sharma",
+                Description ="Robin Sharma, one of the world's top success coaches and author of the international bestseller ‘The Monk Who Sold His Ferrari’, offers 10 high-impact lessons for success.‘The Greatness Guide’ is a strikingly powerful and enormously practical handbook that will inspire you to get to world class in both your personal and professional life.Written by Robin Sharma, one of the world's top success coaches and a man whose ideas have been embraced by celebrity CEO's, leading entrepreneurs, rock stars and royalty, as well as by many FORTUNE 500 companies, ‘The Greatness Guide’ contains a proven formula that will help you meet your highest potential and live an extraordinary life.",
+                 Genre = "Health, Mind & Body", Price = 119, Stock = 5},
+ 
+                new Book{Name = "The Leader Who Had No Title", Author = "Robin Sharma",
+                Description = "For more than fifteen years, Robin Sharma has been quietly sharing with Fortune 500 companies and many of the super-rich a success formula that has made him one of the most sought-after leadership advisers in the world. Now, for the first time, Sharma makes his proprietary process available to you, so that you can get to your absolute best while helping your organization break through to a dramatically new level of winning in these wildly uncertain times.",
+                Genre = "Health, Mind & Body", Price = 262 ,Stock = 4},
+
+                new Book{Name = "The Monk Who Sold his Ferrari", Author = "Robin Sharma",
+                Description ="An internationally bestselling fable about a spiritual journey, littered with powerful life lessons that teach us how to abandon consumerism in order to embrace destiny, live life to the full and discover joy",
+                Genre = "Health, Mind & Body", Price = 67, Stock = 3},
+
+                new Book { Name = "Atomic Habits", Author = "James Clear",
+                Description ="Transform your life with tiny changes in behaviour, starting now.",
+                Genre = "Health, Mind & Body", Price = 240, Stock = 4},
 
         }; //End of Books
-
-            
-            
-            
-
-
-
-
-
-            //Authors
-            var authors = new List<BookAuthor>
-            { 
-                //Add
-            };
-
-            //Genre
-            var genres = new List<BookGenre>
-            {
-                new BookGenre {Genre ="Biographies & Memoirs"},
-                new BookGenre {Genre ="Health, Mind & Body"},
-                new BookGenre {Genre ="Romance"},
-                new BookGenre {Genre ="Children's Books"},
-                new BookGenre {Genre ="Fantasy & Science Fiction"},
-                new BookGenre {Genre ="Arts & Entertainment"},
-                new BookGenre {Genre ="Religion & Spirituality"},
-                new BookGenre {Genre ="Thriller & Horror"},
-                new BookGenre {Genre ="Computers & Technology"},
-                new BookGenre {Genre ="Crime & Mystery"},
-                new BookGenre {Genre ="Fiction & Literature"},
-            };
         }
     }
 }
-//new Book { Name = "", Author ="",
-//Description = "",
-//Genre ="",Price = 0,Stock = 0 },
