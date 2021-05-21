@@ -31,6 +31,8 @@
                 new BookGenre {Genre ="Crime & Mystery"},
                 new BookGenre {Genre ="Fiction & Literature"},
             };
+            //genres.ForEach(g => context.BookGenres.AddOrUpdate(c => c.Genre, g));
+            //context.SaveChanges();
 
             //Authors
             var authors = new List<BookAuthor>
@@ -56,7 +58,12 @@
             new BookAuthor {Author ="Ebbe Dommisse"},
             new BookAuthor {Author ="Glennon Doyle"},
             new BookAuthor {Author ="Mathew McConaughey"},
+            new BookAuthor {Author ="James Patterson"},
+            new BookAuthor {Author ="Stephen Walther"},
             };
+            //authors.ForEach(a => context.BookAuthors.AddOrUpdate(c => c.Author, a));
+            //context.SaveChanges();
+
 
             //Books
             var books = new List<Book>
@@ -276,7 +283,7 @@
                 Description = "All must fight to live. But when a creature with near limitless power choses her to save her world, Ami is swept into a fight for everything and everyone.",
                 Genre ="Science Fiction & Fantasy",Price = 135,Stock = 3 },
 
-                new Book { Name = "The Frozen Witch", Author ="Odette C Bell",
+                new Book { Name = "Frozen Witch", Author ="Odette C Bell",
                 Description = " A world of magic, of crime, of retribution.",
                 Genre ="Science Fiction & Fantasy",Price = 255,Stock = 4 },
 
@@ -440,7 +447,7 @@
                 Description = "The most comprehensive book on Microsoft’s new ASP.NET 4, ASP.NET 4 Unleashed covers all facets of ASP.NET development. Led by Microsoft ASP.NET program manager Stephen Walther, an expert author team thoroughly covers the entire platform.",
                 Genre ="Computers & Technology",Price = 388,Stock = 8 },
 
-                new Book { Name = "ASP.NET MVC Framework", Author ="stephen Walther",
+                new Book { Name = "ASP.NET MVC Framework", Author ="Stephen Walther",
                 Description = "In this book, world-renowned ASP.NET expert and member of the Microsoft ASP.NET team Stephen Walther shows experienced developers how to use Microsoft’s new ASP.NET MVC Framework to build web applications that are more powerful, flexible, testable, manageable, scalable, and extensible.",
                 Genre ="Computers & Technology",Price = 328,Stock = 4 },
 
@@ -534,7 +541,7 @@
                 Description =  "Candid, moving, exhilarating, uplifting, and frequently humorous, the words Oprah shares in What I Know For Sure shimmer with the sort of truth that readers will turn to again and again.",
                 Genre = "Health, Mind & Body", Price = 182, Stock = 3},
 
-                new Book { Name ="Discover Your Destiny With The Monk Who Sold His Ferrari", Author ="Robin Sharma",
+                new Book { Name ="Discover Your Destiny", Author ="Robin Sharma",
                 Description ="A potent pathway to self-awakening that will help you to live your greatest life and claim the happiness, prosperity and inner peace that you deserve. From the author of the international bestseller, The Monk Who Sold His Ferrari",
                 Genre ="Health, Mind & Body" , Price = 119, Stock = 3},
 
@@ -558,7 +565,7 @@
                 Description = "For more than fifteen years, Robin Sharma has been quietly sharing with Fortune 500 companies and many of the super-rich a success formula that has made him one of the most sought-after leadership advisers in the world. Now, for the first time, Sharma makes his proprietary process available to you, so that you can get to your absolute best while helping your organization break through to a dramatically new level of winning in these wildly uncertain times.",
                 Genre = "Health, Mind & Body", Price = 262 ,Stock = 4},
 
-                new Book{Name = "The Monk Who Sold his Ferrari", Author = "Robin Sharma",
+                new Book{Name = "Leadership Wisdom", Author = "Robin Sharma",
                 Description ="An internationally bestselling fable about a spiritual journey, littered with powerful life lessons that teach us how to abandon consumerism in order to embrace destiny, live life to the full and discover joy",
                 Genre = "Health, Mind & Body", Price = 67, Stock = 3},
 
@@ -566,7 +573,10 @@
                 Description ="Transform your life with tiny changes in behaviour, starting now.",
                 Genre = "Health, Mind & Body", Price = 240, Stock = 4},
 
-        }; //End of Books
+        }; 
+            //books.ForEach(b => context.Books.AddOrUpdate(c => c.Name, b));
+            //context.SaveChanges();
+
         }
     }
 }
