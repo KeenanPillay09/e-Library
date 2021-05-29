@@ -223,6 +223,7 @@
     <Content Include="Content\Home\Books1.jpg" />
     <Content Include="Content\Home\Books2.jpg" />
     <Content Include="Content\Home\Books3.jpg" />
+    <Content Include="Content\thankyou.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -394,6 +395,8 @@
     <Content Include="Views\OrderManager\Index.cshtml" />
     <Content Include="Views\OrderManager\UpdateOrder.cshtml" />
     <Content Include="Views\OrderManager\OrderItems.cshtml" />
+    <Content Include="Views\Basket\Courier.cshtml" />
+    <Content Include="Views\Basket\Collect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

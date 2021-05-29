@@ -54,6 +54,11 @@ namespace e_Library.Services
                 }
             }
 
+            if (basket==null)
+            {
+                basket = CreateNewBasket(httpContext);
+            }
+
             return basket;
         }
 
@@ -155,6 +160,23 @@ namespace e_Library.Services
             {
                 return model;
             }
+        }
+
+        public decimal BasketTotal(HttpContextBase httpContext)
+        {
+            Basket basket = GetBasket(httpContext, false);
+            decimal bTotal = 0;
+
+            if (basket != null)
+            {
+                decimal? basketTotal = (from item in basket.BasketItems
+                                        join p in bookContext.Collection() on item.BookId equals p.Id
+                                        select item.Quantity * p.Price).Sum();
+
+                bTotal = basketTotal ?? decimal.Zero;
+            }
+
+            return bTotal;
         }
 
         public void ClearBasket(HttpContextBase httpContext)

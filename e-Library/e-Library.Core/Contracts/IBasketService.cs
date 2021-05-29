@@ -14,6 +14,7 @@ namespace e_Library.Core.Contracts
         void RemoveFromBasket(HttpContextBase httpContext, string itemId);
         List<BasketItemViewModel> GetBasketItems(HttpContextBase httpContext);
         BasketSummaryViewModel GetBasketSummary(HttpContextBase httpContext);
+        decimal BasketTotal(HttpContextBase httpContext);
         void ClearBasket(HttpContextBase httpContext);
     }
 }

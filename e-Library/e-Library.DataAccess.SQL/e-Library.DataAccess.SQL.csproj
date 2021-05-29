@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202105211117402_AddedSeedMethod.designer.cs">
       <DependentUpon>202105211117402_AddedSeedMethod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202105290932277_AddedDeliveryBasketFinalTotals.cs" />
+    <Compile Include="Migrations\202105290932277_AddedDeliveryBasketFinalTotals.designer.cs">
+      <DependentUpon>202105290932277_AddedDeliveryBasketFinalTotals.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202105211117402_AddedSeedMethod.resx">
       <DependentUpon>202105211117402_AddedSeedMethod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202105290932277_AddedDeliveryBasketFinalTotals.resx">
+      <DependentUpon>202105290932277_AddedDeliveryBasketFinalTotals.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

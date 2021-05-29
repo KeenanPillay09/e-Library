@@ -1,0 +1,81 @@
+﻿@model e_Library.Core.Models.Order
+
+<h3>Collection Options</h3>
+<br />
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Collection Type</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Normal Collection</td>
+            <td>Customers can pick-up there books from a selected warehouse between 3-7 working days</td>
+            <td>R25.00</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Delayed Collection</td>
+            <td>Customers can pick-up there books from a selected warehouse between 7-14 working days</td>
+            <td>R50.00</td>
+        </tr>
+
+    </tbody>
+</table>
+<br />
+<h4>NOTE: A holding charge will not be added for orders above the price of R350</h4>
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Please select a collection method:</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="form-group">
+            <div class="col-md-10">
+                Normal Collection:  @Html.RadioButtonFor(model => model.DeliveryMethod, "Normal Collection")
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                Delayed Collection:  @Html.RadioButtonFor(model => model.DeliveryMethod, "Delayed Collection")
+            </div>
+            <br />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-2 col-md-10">
+            <input type="submit" value="Calculate Order Total" class="btn btn-default" />
+        </div>
+    </div>
+}
+<br />
+<div class="form-group">
+    @Html.LabelFor(model => model.FinalTotal, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="col-md-10">
+        @Html.DisplayFor(model => model.FinalTotal, new { htmlAttributes = new { @class = "form-control" } })
+    </div>
+</div>
+<br />
+
+<div class="col-md-12">
+    <a href="@Url.Action("ThankYou", "Basket")" class="btn btn-default">Proceed to Payment</a>
+</div>
+
+
+
+
+
