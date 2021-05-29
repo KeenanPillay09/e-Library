@@ -10,7 +10,7 @@ using e_Library.WebUI.Models;
 
 namespace e_Library.WebUI.Controllers
 {
-    [Authorize]
+    [Authorize(Users = "21901959@dut4life.ac.za")]
     public class ManageController : Controller
     {
         private ApplicationSignInManager _signInManager;

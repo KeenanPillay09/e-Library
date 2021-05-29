@@ -31,8 +31,8 @@
                 new BookGenre {Genre ="Crime & Mystery"},
                 new BookGenre {Genre ="Fiction & Literature"},
             };
-            //genres.ForEach(g => context.BookGenres.AddOrUpdate(c => c.Genre, g));
-            //context.SaveChanges();
+            genres.ForEach(g => context.BookGenres.AddOrUpdate(c => c.Genre, g));
+            context.SaveChanges();
 
             //Authors
             var authors = new List<BookAuthor>
@@ -61,8 +61,8 @@
             new BookAuthor {Author ="James Patterson"},
             new BookAuthor {Author ="Stephen Walther"},
             };
-            //authors.ForEach(a => context.BookAuthors.AddOrUpdate(c => c.Author, a));
-            //context.SaveChanges();
+            authors.ForEach(a => context.BookAuthors.AddOrUpdate(c => c.Author, a));
+            context.SaveChanges();
 
 
             //Books
@@ -573,9 +573,9 @@
                 Description ="Transform your life with tiny changes in behaviour, starting now.",
                 Genre = "Health, Mind & Body", Price = 240, Stock = 4},
 
-        }; 
-            //books.ForEach(b => context.Books.AddOrUpdate(c => c.Name, b));
-            //context.SaveChanges();
+        };
+            books.ForEach(b => context.Books.AddOrUpdate(c => c.Name, b));
+            context.SaveChanges();
 
         }
     }

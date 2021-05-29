@@ -11,7 +11,7 @@ using System.IO;
 
 namespace MyShop.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Users = "21901959@dut4life.ac.za")]
     public class BookManagerController : Controller
     {
         IRepository<Book> context;

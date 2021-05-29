@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace e_Library.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Users = "21901959@dut4life.ac.za")]
     public class OrderManagerController : Controller
     {
         IOrderService orderService;

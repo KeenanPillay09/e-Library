@@ -9,7 +9,7 @@ using e_Library.Core.Contracts;
 
 namespace e_Library.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Users = "21901959@dut4life.ac.za")]
     public class BookAuthorManagerController : Controller
     {
         IRepository<BookAuthor> context;
