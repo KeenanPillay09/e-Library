@@ -129,7 +129,9 @@ namespace e_Library.WebUI.Controllers
             //Clear Basket
             basketService.ClearBasket(this.HttpContext);
 
-            return View("Courier", objOrder);
+            //Sending Final Total to Payment Page
+            return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
+            //return View("Courier", objOrder);
         }
         public ActionResult Collect()
         {
@@ -161,8 +163,23 @@ namespace e_Library.WebUI.Controllers
             //Clear Basket
             basketService.ClearBasket(this.HttpContext);
 
-            return View("Collect", objOrder);
+            //Sending Final Total to Payment Page
+            return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
+            //return View("Collect", objOrder);
         }
+
+        public ActionResult Payment(decimal FinalTotal)
+        {
+            string url = "";
+            decimal fTotal = FinalTotal;
+            
+            
+            fTotal = Decimal.Ceiling(fTotal);
+            url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=/Basket/ThankYou";
+
+            return Redirect(url);
+        }
+
         public ActionResult ThankYou(string OrderId)
         {
             ViewBag.OrderId = OrderId;
