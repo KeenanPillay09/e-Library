@@ -27,7 +27,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(m => m.Delivery, new SelectList(Enum.GetValues(typeof(e_Library.Core.Models.Order.DeliveryType))), "Select")
+                @Html.DropDownListFor(m => m.Delivery, new SelectList(Enum.GetValues(typeof(e_Library.Core.Models.Order.DeliveryType))),new { @class = "form-control" })
             </div>
         </div>
 

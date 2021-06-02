@@ -23,7 +23,7 @@ namespace e_Library.WebUI
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap-lumen.css",
+                      "~/Content/bootstrap-united.css",
                       "~/Content/site.css"));
         }
     }

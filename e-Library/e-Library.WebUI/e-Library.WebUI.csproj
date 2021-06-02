@@ -212,17 +212,20 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\BG.PNG" />
     <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-slate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-united.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Home\Books.jpg" />
     <Content Include="Content\Home\Books1.jpg" />
     <Content Include="Content\Home\Books2.jpg" />
     <Content Include="Content\Home\Books3.jpg" />
+    <Content Include="Content\Library Background.jpg" />
     <Content Include="Content\thankyou.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

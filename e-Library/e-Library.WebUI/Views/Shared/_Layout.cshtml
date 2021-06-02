@@ -9,7 +9,7 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -21,13 +21,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (Request.IsAuthenticated && User.Identity.Name=="21901959@dut4life.ac.za")
+                    @if (Request.IsAuthenticated && User.Identity.Name == "21901959@dut4life.ac.za")
                     {
                         <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                     }
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @*@if (Request.IsAuthenticated && User.Identity.Name=="21901959@dut4life.ac.za")
+        {
+           <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+        }*@
                     <li>@Html.ActionLink("Purchase Books", "Index", "PurchaseBook")</li>
                     <li>@Html.ActionLink("Borrow Books", "Contact", "Home")</li>
                 </ul>
