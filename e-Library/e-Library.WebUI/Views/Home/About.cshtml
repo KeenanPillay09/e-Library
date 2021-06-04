@@ -1,7 +1,44 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<div class="container-fluid">
+    <div class="jumbotron">
+        <h1 class="text-primary text-center">About</h1>
+
+        <ul class="nav nav-pills nav-justified">
+            <li class="active">
+                <a data-toggle="pill" href="#development">Development & Ambitions </a>
+            </li>
+            <li><a data-toggle="pill" href="#location">Location</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="development" class="tab-pane fade in active">
+                <h2>The Importance of Traditional Libraries</h2>
+                <p>Libraries have played a significant role in the development and enjoyment of citizens lives. It’s always been a place which offers the availability of all kinds of books, whether it be educational or leisure reading. There has always been a need for libraries, as it helped bridge the gap for students who didn’t have access to learning resources</p>
+                <h2>The Start of e-Library</h2>
+                <p>Despite its success of libraries in the past few decades the emergence of the Covid-19 pandemic and the resulting lockdown has brought about the closing of libraries. People are adapting to this change and rather looking at buying books online or downloading the PDF versions. Thats when e-Library was formed by a group of young IT developers. The main aim was to allow students and readers access to all books no matter which part of the country they were from. </p>
+                <h2>What we want to achieve</h2>
+                <p>The main goal for all the employees at e-Library is to provide everyone with access to books all around the country. The options of having the books delivered to your door or even picked up have been very successful so far, and we are constantly looking to improve our services</p>
+            </div>
+            <div id="location" class="tab-pane fade">
+                <h2>e-Library Warehouse Details</h2>
+                <p>
+                    Address: Anton Lembede St, Durban Central, Durban, 4000
+                </p>
+                <p>
+                    Hours: 8am - 5pm (Monday-Sunday)
+                </p>
+                <p>
+                    Phone: 031 311 2401
+                </p>
+                <p>
+                    @Html.ActionLink("View Location On Map", "Map", "Home")
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

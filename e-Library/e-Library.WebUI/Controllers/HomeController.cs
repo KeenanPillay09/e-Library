@@ -15,8 +15,11 @@ namespace e_Library.WebUI.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            return View();
+        }
 
+        public ActionResult Map()
+        {
             return View();
         }
 
