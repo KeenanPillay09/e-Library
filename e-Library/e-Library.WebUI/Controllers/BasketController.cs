@@ -31,7 +31,7 @@ namespace e_Library.WebUI.Controllers
         {
             basketService.AddToBasket(this.HttpContext, Id);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "PurchaseBook");
         }
 
         public ActionResult RemoveFromBasket(string Id)
@@ -175,7 +175,7 @@ namespace e_Library.WebUI.Controllers
             
             
             fTotal = Decimal.Ceiling(fTotal);
-            url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=/Basket/ThankYou";
+            url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou";
 
             return Redirect(url);
         }
