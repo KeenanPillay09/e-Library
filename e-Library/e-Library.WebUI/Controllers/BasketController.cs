@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace e_Library.WebUI.Controllers
@@ -184,6 +185,21 @@ namespace e_Library.WebUI.Controllers
         public ActionResult ThankYou(string OrderId)
         {
             ViewBag.OrderId = OrderId;
+
+            string email = Session["UserEmail"].ToString();
+            string subject = "<do-not-reply> e-Library Order Confirmation";
+            string body = "Good day! Hope you are keeping well. This is confirmation that we have received your order and are processing it. See you soon!";
+
+            WebMail.SmtpServer = "smtp.gmail.com";
+            WebMail.SmtpPort = 587;
+            WebMail.SmtpUseDefaultCredentials = true;
+            WebMail.EnableSsl = true;
+            WebMail.UserName = "ballantines.pharmacy@gmail.com"; //email Address
+            WebMail.Password = "Ballantines2020"; //Password case sensitive
+
+            WebMail.Send(email, subject, body);
+            ViewBag.msg = "Email sent!";
+
             return View();
         }
     }
