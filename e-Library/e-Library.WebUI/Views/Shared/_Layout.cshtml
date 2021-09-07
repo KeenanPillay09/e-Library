@@ -9,7 +9,16 @@
 
 </head>
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
+    @*<style>
+        body {
+            color: white;
+            background-image: url('../../Content/Library Background.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+    </style>*@
+    <div class="navbar navbar-default navbar-fixed-top" @*style="border: none; background-image: url('../../Content/BG.PNG'); font-size: 15px;"*@>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,11 +38,11 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @*<li>@Html.ActionLink("Map", "Map", "Home")</li>*@
                     @*@if (Request.IsAuthenticated && User.Identity.Name=="21901959@dut4life.ac.za")
-        {
-           <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-        }*@
+                        {
+                           <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                        }*@
                     <li>@Html.ActionLink("Purchase Books", "Index", "PurchaseBook")</li>
-                    <li>@Html.ActionLink("Borrow Books", "Contact", "Home")</li>
+                    @*<li>@Html.ActionLink("Borrow Books", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
                 @{
@@ -46,8 +55,8 @@
         @RenderBody()
         <hr />
         @*<footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>*@
+                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/jquery")

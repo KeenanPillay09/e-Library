@@ -1,5 +1,6 @@
 ﻿using e_Library.Core.Contracts;
 using e_Library.Core.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -176,29 +177,27 @@ namespace e_Library.WebUI.Controllers
             
             
             fTotal = Decimal.Ceiling(fTotal);
-            url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
+           url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
            // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
 
             return Redirect(url);
         }
 
-        public ActionResult ThankYou(string OrderId)
+        public ActionResult ThankYou()
         {
-            ViewBag.OrderId = OrderId;
+            //Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
+            //string email = customer.Email;
+            //string subject = "<do-not-reply> e-Library Order Confirmation";
+            //string body = "Good day! Hope you are keeping well. This is confirmation that we have received your order and are processing it. See you soon!";
 
-            string email = Session["UserEmail"].ToString();
-            string subject = "<do-not-reply> e-Library Order Confirmation";
-            string body = "Good day! Hope you are keeping well. This is confirmation that we have received your order and are processing it. See you soon!";
+            //WebMail.SmtpServer = "smtp.gmail.com";
+            //WebMail.SmtpPort = 587;
+            //WebMail.SmtpUseDefaultCredentials = true;
+            //WebMail.EnableSsl = true;
+            //WebMail.UserName = "ballantines.pharmacy@gmail.com"; //email Address
+            //WebMail.Password = "Ballantines2020"; //Password case sensitive
 
-            WebMail.SmtpServer = "smtp.gmail.com";
-            WebMail.SmtpPort = 587;
-            WebMail.SmtpUseDefaultCredentials = true;
-            WebMail.EnableSsl = true;
-            WebMail.UserName = "ballantines.pharmacy@gmail.com"; //email Address
-            WebMail.Password = "Ballantines2020"; //Password case sensitive
-
-            WebMail.Send(email, subject, body);
-            ViewBag.msg = "Email sent!";
+            //WebMail.Send(email, subject, body);
 
             return View();
         }

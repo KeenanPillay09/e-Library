@@ -1,29 +1,77 @@
 ﻿@{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>e-Library</h1>
-    <p class="lead">Have a look at our wide range of books which you can borrow or even purchase if you're feeling adventurous. Available from the comfort of your home!</p>
-    <p><a href="#" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<html>
+<body>
+    <style>
+        * {
+            font-family: Arial;
+        }
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Purchase Book</h2>
-        <p>
-            Purchases R350 and over gets you free delivery! Order now!
-        </p>
-        <p><a class="btn btn-default" href="/PurchaseBook/Index">Let's Go &raquo;</a></p>
+        .banner {
+            width: 100%;
+            height: 80vh;
+        }
+
+        .content {
+            padding-top: 15%;
+            text-align: center;
+        }
+
+        button {
+            width: 200px;
+            padding: 15px;
+            text-align: center;
+            margin: 20px 10px;
+            border-radius: 25px;
+            font-family: 'Arial Rounded MT';
+            font-weight: bold;
+            border: 2px solid white;
+            background: transparent;
+            color: orange;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+            button:hover {
+                transform: scale(1.1);
+                transition: 0.5s;
+            }
+    </style>
+
+    <style>
+            body {
+                color: white;
+                background-image: url('../../Content/Library Background.jpg');
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-position: center;
+            }
+        </style>
+
+    <div class="banner">
+        <div class="content">
+
+            <h1>Welcome to <br />e-Library</h1>
+            <p>
+
+                Have a look at our wide range of books which you can borrow or even purchase if you're feeling adventurous. <br />Available from the comfort of your home! <br />   
+                
+                <br />
+                <b>Borrow Books</b> - Pick them up, or get them delivered to you! (T's and C's apply!)
+                <br />
+                <b>Purchase Books</b> - Purchases R350 and over gets you free delivery! Order now!
+            </p>
+            <div>
+                @*<button class="btn btn-default" type="button">Purchase Books</button>
+                <button class="btn btn-default" type="button">Borrow Books</button>*@
+                <p><a class="btn btn-primary" href="/PurchaseBook/Index">Purchase Books &raquo;</a>
+                <a class="btn btn-primary" href="#">Borrow Books &raquo;</a></p>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Borrow Book</h2>
-        <p>Pick them up, or get them delivered to you! (T's and C's apply!)</p>
-        <p><a class="btn btn-default" href="#">Let's Go &raquo;</a></p>
-    </div>
-    @*<div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>*@
-</div>
+</body>
+
+</html>
