@@ -9,6 +9,8 @@ using e_Library.WebUI.Models;
 
 namespace e_Library.WebUI
 {
+    
+
     public partial class Startup
     {
         // For more information on configuring authentication, please visit https://go.microsoft.com/fwlink/?LinkId=301864
@@ -54,15 +56,15 @@ namespace e_Library.WebUI
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "642492336727238",
+               appSecret: "e7585d24640c923f3135944eece42678"); //Added for Social Login
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "677494336836-ujiii1agus73pdba284udhlnk2h995sn.apps.googleusercontent.com",
+                ClientSecret = "Y4ei19_O2VEQfOa5bYMpBt2-"
+            });
         }
     }
 }
