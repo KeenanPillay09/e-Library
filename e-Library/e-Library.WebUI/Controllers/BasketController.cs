@@ -185,19 +185,20 @@ namespace e_Library.WebUI.Controllers
 
         public ActionResult ThankYou()
         {
-            //Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
-            //string email = customer.Email;
-            //string subject = "<do-not-reply> e-Library Order Confirmation";
-            //string body = "Good day! Hope you are keeping well. This is confirmation that we have received your order and are processing it. See you soon!";
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name); //Returns the user
+            string email = customer.Email; //email
+            string fname = customer.FirstName; //name
+            string subject = "<do-not-reply> e-Library Order Confirmation";
+            string body = "Good day "+fname+"! We have received your order and are processing it. See you soon!";
 
-            //WebMail.SmtpServer = "smtp.gmail.com";
-            //WebMail.SmtpPort = 587;
-            //WebMail.SmtpUseDefaultCredentials = true;
-            //WebMail.EnableSsl = true;
-            //WebMail.UserName = "ballantines.pharmacy@gmail.com"; //email Address
-            //WebMail.Password = "Ballantines2020"; //Password case sensitive
+            WebMail.SmtpServer = "smtp.gmail.com";
+            WebMail.SmtpPort = 587;
+            WebMail.SmtpUseDefaultCredentials = true;
+            WebMail.EnableSsl = true;
+            WebMail.UserName = "ballantines.pharmacy@gmail.com"; //email Address
+            WebMail.Password = "Ballantines2020"; //Password case sensitive
 
-            //WebMail.Send(email, subject, body);
+            WebMail.Send(email, subject, body);
 
             return View();
         }
