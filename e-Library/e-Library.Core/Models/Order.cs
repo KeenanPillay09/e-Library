@@ -40,7 +40,8 @@ namespace e_Library.Core.Models
         public decimal BasketTotal { get; set; }
         [DisplayName("Final Total")]
         public decimal FinalTotal { get; set; }
-
+        public string Driver { get; set; }
+        public IEnumerable<Driver> Drivers { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
 
         public enum DeliveryType

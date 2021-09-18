@@ -177,13 +177,15 @@ namespace e_Library.WebUI.Controllers
             
             
             fTotal = Decimal.Ceiling(fTotal);
-           url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
-           // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
+              url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
+          //  url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
 
             return Redirect(url);
         }
 
-        public ActionResult ThankYou()
+
+
+        public ActionResult ThankYou() 
         {
             Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name); //Returns the user
             string email = customer.Email; //email
@@ -196,7 +198,7 @@ namespace e_Library.WebUI.Controllers
             WebMail.SmtpUseDefaultCredentials = true;
             WebMail.EnableSsl = true;
             WebMail.UserName = "ballantines.pharmacy@gmail.com"; //email Address
-            WebMail.Password = "Ballantines2020"; //Password case sensitive
+            WebMail.Password = "Ballantines2020"; //password case sensitive
 
             WebMail.Send(email, subject, body);
 

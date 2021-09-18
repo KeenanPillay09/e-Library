@@ -31,7 +31,7 @@ namespace MyShop.WebUI.Controllers
             return View(books);
         }
 
-        public ActionResult Create()
+        public ActionResult Create() //Figure Out
         {
             BookManagerViewModel viewModel = new BookManagerViewModel();
 

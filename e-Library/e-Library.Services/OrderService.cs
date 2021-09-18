@@ -35,17 +35,17 @@ namespace e_Library.Services
             orderContext.Commit();
         }
 
-        public List<Order> GetOrderList() //Return All Orders
+        public List<Order> GetOrderList() //Returns list of orders
         {
             return orderContext.Collection().ToList();
         }
 
-        public Order GetOrder(string Id) //Return Individual Order
+        public Order GetOrder(string Id) //Returns an individual order
         {
             return orderContext.Find(Id);
         }
 
-        public void UpdateOrder(Order updatedOrder) //Update Order (Order Status)
+        public void UpdateOrder(Order updatedOrder) //Updates order (Order Status)
         {
             orderContext.Update(updatedOrder);
             orderContext.Commit();

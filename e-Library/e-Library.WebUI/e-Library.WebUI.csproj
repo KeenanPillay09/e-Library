@@ -198,6 +198,7 @@
     <Compile Include="Controllers\BookAuthorManagerController.cs" />
     <Compile Include="Controllers\BookGenreManagerController.cs" />
     <Compile Include="Controllers\BookManagerController.cs" />
+    <Compile Include="Controllers\DriverManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderManagerController.cs" />
@@ -402,6 +403,10 @@
     <Content Include="Views\Basket\Courier.cshtml" />
     <Content Include="Views\Basket\Collect.cshtml" />
     <Content Include="Views\Home\Map.cshtml" />
+    <Content Include="Views\DriverManager\Index.cshtml" />
+    <Content Include="Views\DriverManager\Create.cshtml" />
+    <Content Include="Views\DriverManager\Edit.cshtml" />
+    <Content Include="Views\DriverManager\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

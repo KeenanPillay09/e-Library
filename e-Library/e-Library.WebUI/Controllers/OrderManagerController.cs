@@ -12,10 +12,12 @@ namespace e_Library.WebUI.Controllers
     public class OrderManagerController : Controller
     {
         IOrderService orderService;
+        IRepository<Driver> drivers;
 
-        public OrderManagerController(IOrderService OrderService)
+        public OrderManagerController(IOrderService OrderService, IRepository<Driver> driversContext) 
         {
             this.orderService = OrderService;
+            drivers = driversContext;
         }
         // GET: OrderManager
         public ActionResult Index()
@@ -31,9 +33,13 @@ namespace e_Library.WebUI.Controllers
                 "Order Created",
                 "Payment Processed",
                 "Delivery Required",
+                "Out for Delivery",
                 "Order Complete"
             };
+
             Order order = orderService.GetOrder(Id);
+            order.Drivers = drivers.Collection();
+
             return View(order);
         }
 
@@ -43,6 +49,7 @@ namespace e_Library.WebUI.Controllers
             Order order = orderService.GetOrder(Id);
 
             order.OrderStatus = updatedOrder.OrderStatus;
+            order.Driver = updatedOrder.Driver;
             orderService.UpdateOrder(order);
 
             return RedirectToAction("Index");

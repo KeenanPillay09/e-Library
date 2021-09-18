@@ -53,6 +53,7 @@
     <Compile Include="Models\BookAuthor.cs" />
     <Compile Include="Models\BookGenre.cs" />
     <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
