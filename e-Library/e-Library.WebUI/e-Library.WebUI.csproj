@@ -216,6 +216,7 @@
     <Content Include="Content\BG.PNG" />
     <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap-lumen.css" />
+    <Content Include="Content\bootstrap-sandstone.css" />
     <Content Include="Content\bootstrap-slate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -407,6 +408,8 @@
     <Content Include="Views\DriverManager\Create.cshtml" />
     <Content Include="Views\DriverManager\Edit.cshtml" />
     <Content Include="Views\DriverManager\Delete.cshtml" />
+    <Content Include="Views\Basket\OrderSummary.cshtml" />
+    <Content Include="Views\Basket\BasketItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,6 +23,7 @@ namespace e_Library.WebUI.Controllers
             this.customers = customers;
         }
         // GET: Basket2
+        [Authorize]
         public ActionResult Index()
         {
             var model = basketService.GetBasketItems(this.HttpContext);
@@ -132,8 +133,11 @@ namespace e_Library.WebUI.Controllers
             basketService.ClearBasket(this.HttpContext);
 
             //Sending Final Total to Payment Page
-            return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
-            //return View("Courier", objOrder);
+           //  return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
+
+            //Sending Order Info to OrderSummary Page
+            return RedirectToAction("OrderSummary", new { Id = objOrder.Id });
+
         }
         public ActionResult Collect()
         {
@@ -166,15 +170,32 @@ namespace e_Library.WebUI.Controllers
             basketService.ClearBasket(this.HttpContext);
 
             //Sending Final Total to Payment Page
-            return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
-            //return View("Collect", objOrder);
+            //  return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
+         
+
+            //Sending Order Info to OrderSummary Page
+            return RedirectToAction("OrderSummary", new { Id = objOrder.Id });
         }
+
+        //Order Summary
+      
+        public ActionResult OrderSummary(string Id)
+        {
+            Order order = orderService.GetOrder(Id);
+            return View(order);
+        }
+        [HttpPost]
+        public ActionResult OrderSummary(Order objOrder)
+        {
+            return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
+        }
+
+
 
         public ActionResult Payment(decimal FinalTotal)
         {
             string url = "";
             decimal fTotal = FinalTotal;
-            
             
             fTotal = Decimal.Ceiling(fTotal);
               url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost

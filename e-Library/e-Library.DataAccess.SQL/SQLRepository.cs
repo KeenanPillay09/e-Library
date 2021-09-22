@@ -19,6 +19,7 @@ namespace e_Library.DataAccess.SQL
             this.context = context;
             this.dbSet = context.Set<T>(); // Selecting relevant class/table
         }
+
         public IQueryable<T> Collection()
         {
             return dbSet;
