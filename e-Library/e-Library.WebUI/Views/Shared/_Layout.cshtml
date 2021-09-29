@@ -1,6 +1,14 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZLQPSP111N"></script>
+    <script>window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+     gtag('js', new Date());
+
+     gtag('config', 'G-ZLQPSP111N');</script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - e-Library</title>
@@ -38,10 +46,11 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @*<li>@Html.ActionLink("Map", "Map", "Home")</li>*@
                     @*@if (Request.IsAuthenticated && User.Identity.Name=="21901959@dut4life.ac.za")
-                        {
-                           <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                        }*@
+        {
+           <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+        }*@
                     <li>@Html.ActionLink("Purchase Books", "Index", "PurchaseBook")</li>
+                    <li>@Html.ActionLink("Pre-Orders", "Index", "PurchaseBook")</li>
                     @*<li>@Html.ActionLink("Borrow Books", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")

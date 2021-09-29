@@ -45,7 +45,6 @@
             new BookAuthor {Author ="Bill Bryson"},
             new BookAuthor {Author ="Danielle Steel"},
             new BookAuthor {Author ="AI J Venter"},
-            new BookAuthor {Author ="AI J Venter"},
             new BookAuthor {Author ="James Clear"},
             new BookAuthor {Author ="Odette C Bell"},
             new BookAuthor {Author ="Hayley McGregor"},
