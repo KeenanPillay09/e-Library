@@ -94,8 +94,8 @@ namespace e_Library.WebUI.Controllers
         //Generating QR Code
         public ActionResult GenerateQRCode(string id)
         {
-            ViewBag.qrcode = "https://localhost:44317/DriverPortal/UpdateOrder/" + id;
-          //  ViewBag.qrcode = "https://2021grp09.azurewebsites.net/DriverPortal/UpdateOrder/" + id;
+           // ViewBag.qrcode = "https://localhost:44317/DriverPortal/UpdateOrder/" + id;
+            ViewBag.qrcode = "https://2021grp09.azurewebsites.net/DriverPortal/UpdateOrder/" + id;
 
             return View();
         }

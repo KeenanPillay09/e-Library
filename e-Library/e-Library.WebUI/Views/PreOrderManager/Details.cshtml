@@ -1,0 +1,45 @@
+﻿@model e_Library.Core.Models.PreOrderBooks
+
+@{
+    ViewBag.Title = Model.BookName + " Details";
+}
+
+<h2>@Html.DisplayFor(model => model.BookName)</h2>
+
+<div>
+    <div class="col-md-2">
+        <img class="img-responsive" src="~/Content/BookImages/@Model.Image" />
+    </div>
+    <div class="col-md-10">
+        <dl class="dl-horizontal">
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Category)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt></dt>
+
+            <br />
+
+            <dd><a href="" class="btn btn-default">Pre-Order Now!</a></dd>
+            <br />
+            <dt></dt>
+            <dd>@Html.ActionLink("Back to List", "DisplayPreOrders")</dd>
+        </dl>
+    </div>
+</div>
+<div class="col-md-12 clearfix"></div>
+

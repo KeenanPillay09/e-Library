@@ -201,8 +201,8 @@ namespace e_Library.WebUI.Controllers
             decimal fTotal = FinalTotal;
             
             fTotal = Decimal.Ceiling(fTotal);
-                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
-               // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
+               // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
+                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
 
             return Redirect(url);
         }
@@ -211,20 +211,47 @@ namespace e_Library.WebUI.Controllers
 
         public ActionResult ThankYou() 
         {
-            //Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name); //Returns the user
-            //string email = customer.Email; //email
-            //string fname = customer.FirstName; //name
-            //string subject = "<do-not-reply> e-Library Order Confirmation";
-            //string body = "Good day " + fname + "! We have received your order and are processing it. See you soon!";
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name); //Returns the user
+            string fname = customer.FirstName; //name
 
-            //WebMail.SmtpServer = "smtp.gmail.com";
-            //WebMail.SmtpPort = 587;
-            //WebMail.SmtpUseDefaultCredentials = true;
-            //WebMail.EnableSsl = true;
-            //WebMail.UserName = "ballantines.pharmacy@gmail.com"; //email Address
-            //WebMail.Password = "Ballantines2020"; //password case sensitive
 
-            //WebMail.Send(email, subject, body);
+            string receiver = customer.Email;
+            string subject = "E-Library Order Confirmation  ";
+            string message ="Hi "+ fname+" We have received your order and are processing it. See you soon!";
+
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var senderEmail = new MailAddress("peakylibrary@outlook.com", "e-Library");
+                    var receiverEmail = new MailAddress(receiver, "Receiver");
+                    var password = "Ballantines2021";
+                    var sub = subject;
+                    var body = message;
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp-mail.outlook.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = subject,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }
+                    return View();
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
 
             return View();
         }

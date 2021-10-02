@@ -102,6 +102,10 @@
     <Compile Include="Migrations\202109231136095_UpdateContext1.designer.cs">
       <DependentUpon>202109231136095_UpdateContext1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110020658573_AddPreOrders.cs" />
+    <Compile Include="Migrations\202110020658573_AddPreOrders.designer.cs">
+      <DependentUpon>202110020658573_AddPreOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -149,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109231136095_UpdateContext1.resx">
       <DependentUpon>202109231136095_UpdateContext1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110020658573_AddPreOrders.resx">
+      <DependentUpon>202110020658573_AddPreOrders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

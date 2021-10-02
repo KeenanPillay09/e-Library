@@ -25,38 +25,38 @@
     </tr>
 
 @foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CreatedAt)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FirstName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.LastName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Driver)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.OrderStatus)
-    </td>
-    <td>
-        <div class="btn-group">
-            <a href="#" class="btn btn-success">Manage Order</a>
-            <a href="#" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
-            <ul class="dropdown-menu">
-                <li><a href="@Url.Action("UpdateOrder","OrderManager", new { Id=item.Id })">Update Order</a></li>
-                <li><a href="@Url.Action("GenerateQRCode","OrderManager", new { Id=item.Id })">Generate QR Code</a></li>
-                @*<li><a href="#">Something else here</a></li>*@
-                <li class="divider"></li>
-                <li><a href="@Url.Action("DriverPortal","OrderManager", new { Id=item.Id })">Driver Portal</a></li>
-            </ul>
-        </div>
-    </td>
+   <tr class="@(item.OrderStatus == "Order Complete" ? "success" : string.Empty) ">
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedAt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderStatus)
+        </td>
+        <td>
+            <div class="btn-group">
+                <a href="@Url.Action("UpdateOrder","OrderManager", new { Id=item.Id })" class="btn btn-default">Manage Order</a>
+                <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="@Url.Action("UpdateOrder","OrderManager", new { Id=item.Id })">Update Order</a></li>
+                    <li><a href="@Url.Action("GenerateQRCode","OrderManager", new { Id=item.Id })">Generate QR Code</a></li>
+                    @*<li><a href="#">Something else here</a></li>*@
+                    <li class="divider"></li>
+                    <li><a href="@Url.Action("DriverPortal","OrderManager", new { Id=item.Id })">Driver Portal</a></li>
+                </ul>
+            </div>
+        </td>
 </tr>
 }
 

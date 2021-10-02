@@ -208,6 +208,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderManagerController.cs" />
+    <Compile Include="Controllers\PreOrderManagerController.cs" />
     <Compile Include="Controllers\PurchaseBookController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,7 +259,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Properties\PublishProfiles\2021GRP09 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -419,10 +419,18 @@
     <Content Include="Views\Basket\TestEmail.cshtml" />
     <Content Include="Views\OrderManager\DriverPortal.cshtml" />
     <Content Include="Views\OrderManager\GenerateQRCode.cshtml" />
+    <Content Include="Views\PreOrderManager\Index.cshtml" />
+    <Content Include="Views\PreOrderManager\Create.cshtml" />
+    <Content Include="Views\PreOrderManager\Edit.cshtml" />
+    <Content Include="Views\PreOrderManager\Delete.cshtml" />
+    <Content Include="Views\PreOrderManager\Details.cshtml" />
+    <Content Include="Views\PreOrderManager\DisplayPreOrders.cshtml" />
+    <Content Include="Views\PreOrderManager\ContactForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\BookImages\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
