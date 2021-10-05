@@ -204,6 +204,7 @@
     <Compile Include="Controllers\BookAuthorManagerController.cs" />
     <Compile Include="Controllers\BookGenreManagerController.cs" />
     <Compile Include="Controllers\BookManagerController.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\DriverManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -428,6 +429,9 @@
     <Content Include="Views\PreOrderManager\DisplayPreOrders.cshtml" />
     <Content Include="Views\PreOrderManager\ContactForm.cshtml" />
     <Content Include="Views\PreOrderManager\PreOrderForm.cshtml" />
+    <Content Include="Views\Chart\DisplayChart.cshtml" />
+    <Content Include="Views\Chart\ChartOptions.cshtml" />
+    <Content Include="Views\Chart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
