@@ -259,6 +259,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\2021grp09 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.6.0.js" />
     <Content Include="Scripts\jquery-3.6.0.min.js" />
@@ -426,11 +427,11 @@
     <Content Include="Views\PreOrderManager\Details.cshtml" />
     <Content Include="Views\PreOrderManager\DisplayPreOrders.cshtml" />
     <Content Include="Views\PreOrderManager\ContactForm.cshtml" />
+    <Content Include="Views\PreOrderManager\PreOrderForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\BookImages\" />
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

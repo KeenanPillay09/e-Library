@@ -39,9 +39,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated && User.Identity.Name == "21901959@dut4life.ac.za")
-                    {
+                     {
                         <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                    }
+                     }
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @*<li>@Html.ActionLink("Map", "Map", "Home")</li>*@

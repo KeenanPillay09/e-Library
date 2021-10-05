@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
 using e_Library.Core.Contracts;
@@ -13,10 +15,12 @@ namespace e_Library.WebUI.Controllers
     public class PreOrderManagerController : Controller
     {
         IRepository<PreOrderBooks> context;
+        IRepository<Customer> customers;
 
-        public PreOrderManagerController(IRepository<PreOrderBooks> bookContext)
+        public PreOrderManagerController(IRepository<PreOrderBooks> bookContext, IRepository<Customer> customers)
         {
             context = bookContext;
+            this.customers = customers;
         }
 
 
@@ -38,7 +42,82 @@ namespace e_Library.WebUI.Controllers
         {
             return View();
         }
+        [Authorize]
+        public ActionResult PreOrderForm(string book)
+        {
+            //Populate Customer
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name);
 
+            //Send email to admin
+
+            string receiver = "ballantines.pharmacy@gmail.com";
+            string subject = "Pre-Order Alert!";
+            string message = "We have received a Pre-Order for "+book+"!";
+
+
+            var senderEmail = new MailAddress("peakylibrary@outlook.com", "e-Library");
+            var receiverEmail = new MailAddress(receiver, "Receiver");
+            var password = "Ballantines2021";
+            var sub = subject;
+            var body = message;
+            var smtp = new SmtpClient
+            {
+                Host = "smtp-mail.outlook.com",
+                Port = 587,
+                EnableSsl = true,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(senderEmail.Address, password)
+            };
+            using (var mess = new MailMessage(senderEmail, receiverEmail)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(mess);
+            }
+
+            return View(customer);
+        }
+        [HttpPost]
+        public ActionResult PreOrderForm(Customer objCustomer)
+        {
+            Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name); //Returns the user
+            string fname = customer.FirstName; //name
+
+            //Email to Customer
+
+            string receiver = customer.Email;
+            string subject = "E-Library Pre-Order";
+            string message = "Hi " + fname + " We have received your pre-order.We will contact you when the book becomes available!";
+
+       
+                    var senderEmail = new MailAddress("peakylibrary@outlook.com", "e-Library");
+                    var receiverEmail = new MailAddress(receiver, "Receiver");
+                    var password = "Ballantines2021";
+                    var sub = subject;
+                    var body = message;
+                    var smtp = new SmtpClient
+                    {
+                        Host = "smtp-mail.outlook.com",
+                        Port = 587,
+                        EnableSsl = true,
+                        DeliveryMethod = SmtpDeliveryMethod.Network,
+                        UseDefaultCredentials = false,
+                        Credentials = new NetworkCredential(senderEmail.Address, password)
+                    };
+                    using (var mess = new MailMessage(senderEmail, receiverEmail)
+                    {
+                        Subject = subject,
+                        Body = body
+                    })
+                    {
+                        smtp.Send(mess);
+                    }          
+        
+            return RedirectToAction("DisplayPreOrders");
+        }
         public ActionResult Details(string Id)
         {
             PreOrderBooks book = context.Find(Id);

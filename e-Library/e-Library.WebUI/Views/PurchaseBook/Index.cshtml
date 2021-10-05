@@ -10,9 +10,9 @@
     <div class="list-group">
         @Html.ActionLink("All", "Index", null, new { @class = Request["Genre"] == null ? "list-group-item active" : "list-group-item" })
         @foreach (var cat in Model.BookGenres)
-        {
+         {
             @Html.ActionLink(cat.Genre, "Index", new { Genre = cat.Genre }, new { @class = Request["Genre"] == cat.Genre ? "list-group-item active" : "list-group-item" })
-        }
+         }
     </div>
 </div>
 

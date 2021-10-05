@@ -86,7 +86,7 @@ namespace e_Library.WebUI.Controllers
 
             order.OrderStatus = "Order Created";
             order.Email = User.Identity.Name;
-
+            
 
             //delivery
             if (order.Delivery.ToString() == "Courier")
@@ -201,8 +201,8 @@ namespace e_Library.WebUI.Controllers
             decimal fTotal = FinalTotal;
             
             fTotal = Decimal.Ceiling(fTotal);
-               // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
-                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
+                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
+               // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
 
             return Redirect(url);
         }
