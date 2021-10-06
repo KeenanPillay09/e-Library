@@ -106,6 +106,34 @@
     <Compile Include="Migrations\202110020658573_AddPreOrders.designer.cs">
       <DependentUpon>202110020658573_AddPreOrders.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110051129046_AddOrderStatus.cs" />
+    <Compile Include="Migrations\202110051129046_AddOrderStatus.designer.cs">
+      <DependentUpon>202110051129046_AddOrderStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110051130369_UpdateDataContextWithOS.cs" />
+    <Compile Include="Migrations\202110051130369_UpdateDataContextWithOS.designer.cs">
+      <DependentUpon>202110051130369_UpdateDataContextWithOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110051501439_AddOrderStatusModel.cs" />
+    <Compile Include="Migrations\202110051501439_AddOrderStatusModel.designer.cs">
+      <DependentUpon>202110051501439_AddOrderStatusModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110051518224_DeleteOrderStatusClass.cs" />
+    <Compile Include="Migrations\202110051518224_DeleteOrderStatusClass.designer.cs">
+      <DependentUpon>202110051518224_DeleteOrderStatusClass.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110060806467_ChangeDBContext.cs" />
+    <Compile Include="Migrations\202110060806467_ChangeDBContext.designer.cs">
+      <DependentUpon>202110060806467_ChangeDBContext.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110060833174_DeleteOrderStatusModel.cs" />
+    <Compile Include="Migrations\202110060833174_DeleteOrderStatusModel.designer.cs">
+      <DependentUpon>202110060833174_DeleteOrderStatusModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110060903492_ReAddOrderStatusModel.cs" />
+    <Compile Include="Migrations\202110060903492_ReAddOrderStatusModel.designer.cs">
+      <DependentUpon>202110060903492_ReAddOrderStatusModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -156,6 +184,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110020658573_AddPreOrders.resx">
       <DependentUpon>202110020658573_AddPreOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110051129046_AddOrderStatus.resx">
+      <DependentUpon>202110051129046_AddOrderStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110051130369_UpdateDataContextWithOS.resx">
+      <DependentUpon>202110051130369_UpdateDataContextWithOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110051501439_AddOrderStatusModel.resx">
+      <DependentUpon>202110051501439_AddOrderStatusModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110051518224_DeleteOrderStatusClass.resx">
+      <DependentUpon>202110051518224_DeleteOrderStatusClass.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110060806467_ChangeDBContext.resx">
+      <DependentUpon>202110060806467_ChangeDBContext.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110060833174_DeleteOrderStatusModel.resx">
+      <DependentUpon>202110060833174_DeleteOrderStatusModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110060903492_ReAddOrderStatusModel.resx">
+      <DependentUpon>202110060903492_ReAddOrderStatusModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

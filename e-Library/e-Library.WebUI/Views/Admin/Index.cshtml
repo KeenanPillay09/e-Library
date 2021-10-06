@@ -21,7 +21,9 @@
 <div class="col-md-6">
     <h4>Order Management</h4>
     <div class="list-group">
-        @Html.ActionLink("Manage Orders", "Index", "OrderManager", null, new { @class = "list-group-item" })
+        @Html.ActionLink("Display Orders", "DisplayOrdersWithFilter", "OrderManager", null, new { @class = "list-group-item" })
+        @Html.ActionLink("Prepare Orders", "PrepareOrder", "OrderManager", null, new { @class = "list-group-item" })
+        @Html.ActionLink("Manage Order Statuses", "Index", "OrderStatusManager", null, new { @class = "list-group-item" })
         @Html.ActionLink("Manage Drivers", "Index", "DriverManager", null, new { @class = "list-group-item" })
     </div>
 </div>

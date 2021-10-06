@@ -209,6 +209,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderManagerController.cs" />
+    <Compile Include="Controllers\OrderStatusManagerController.cs" />
     <Compile Include="Controllers\PreOrderManagerController.cs" />
     <Compile Include="Controllers\PurchaseBookController.cs" />
     <Compile Include="Global.asax.cs">
@@ -432,6 +433,12 @@
     <Content Include="Views\Chart\DisplayChart.cshtml" />
     <Content Include="Views\Chart\ChartOptions.cshtml" />
     <Content Include="Views\Chart\Index.cshtml" />
+    <Content Include="Views\OrderStatusManager\Index.cshtml" />
+    <Content Include="Views\OrderStatusManager\Create.cshtml" />
+    <Content Include="Views\OrderStatusManager\Edit.cshtml" />
+    <Content Include="Views\OrderStatusManager\Delete.cshtml" />
+    <Content Include="Views\OrderManager\DisplayOrdersWithFilter.cshtml" />
+    <Content Include="Views\OrderManager\PrepareOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

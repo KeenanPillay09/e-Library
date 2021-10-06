@@ -1,5 +1,6 @@
 ﻿using e_Library.Core.Contracts;
 using e_Library.Core.Models;
+using e_Library.Core.ViewModels;
 using QRCoder;
 using System;
 using System.Collections.Generic;
@@ -17,11 +18,13 @@ namespace e_Library.WebUI.Controllers
     {
         IOrderService orderService;
         IRepository<Driver> drivers;
+        IRepository<OrderStatusModel> orderStatuses;
 
-        public OrderManagerController(IOrderService OrderService, IRepository<Driver> driversContext) 
+        public OrderManagerController(IOrderService OrderService, IRepository<Driver> driversContext, IRepository<OrderStatusModel> orderStatusContext) 
         {
             this.orderService = OrderService;
             drivers = driversContext;
+            orderStatuses = orderStatusContext;
         }
         // GET: OrderManager
         [Authorize(Users = "21901959@dut4life.ac.za")]
@@ -32,6 +35,35 @@ namespace e_Library.WebUI.Controllers
             return View(orders);
         }
 
+        public ActionResult DisplayOrdersWithFilter(string Status = null)
+        {
+            List<Order> orders;
+            List<OrderStatusModel> statuses = orderStatuses.Collection().ToList();
+
+            if (Status == null)
+            {
+                orders = orderService.GetOrderList().Where(p => p.OrderStatus != "Order Complete").ToList();
+            }
+            else
+            {
+                orders = orderService.GetOrderList().Where(p => p.OrderStatus == Status).ToList();
+            }
+
+            OrderStatusListViewModel model = new OrderStatusListViewModel();
+            model.Orders = orders;
+            model.OrderStatusModels = statuses;
+
+            return View(model);
+        }
+
+        //Prepare Order
+        public ActionResult PrepareOrder()
+        {
+            List<Order> orders = orderService.GetOrderList();
+            orders = orderService.GetOrderList().Where(p => (p.Driver == "" && p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery")).ToList();
+
+            return View(orders);
+        }
         //Update Order
 
         [Authorize(Users = "21901959@dut4life.ac.za")]
@@ -60,7 +92,7 @@ namespace e_Library.WebUI.Controllers
             order.Driver = updatedOrder.Driver;
             orderService.UpdateOrder(order);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("DisplayOrdersWithFilter");
         }
 
 

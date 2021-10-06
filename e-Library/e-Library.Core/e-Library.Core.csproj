@@ -62,12 +62,14 @@
     <Compile Include="Models\Driver.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderItem.cs" />
+    <Compile Include="Models\OrderStatusModel.cs" />
     <Compile Include="Models\PreOrderBooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BasketItemViewModel.cs" />
     <Compile Include="ViewModels\BasketSummaryViewModel.cs" />
     <Compile Include="ViewModels\BookManagerViewModel.cs" />
     <Compile Include="ViewModels\BookListViewModel.cs" />
+    <Compile Include="ViewModels\OrderStatusListViewModel.cs" />
     <Compile Include="ViewModels\PreOrderListView.cs" />
   </ItemGroup>
   <ItemGroup>
