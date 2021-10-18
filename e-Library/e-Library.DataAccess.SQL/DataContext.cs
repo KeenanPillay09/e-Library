@@ -24,8 +24,8 @@ namespace e_Library.DataAccess.SQL
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Driver> Drivers { get; set; }
-        public DbSet<PreOrderBooks> PreOrderBooks { get; set; }
         public DbSet<OrderStatusModel> OrderStatusModels { get; set; }
+        public DbSet<PreBook> PreBooks { get; set; }
 
     }
 }

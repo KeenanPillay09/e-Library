@@ -56,14 +56,26 @@ namespace e_Library.WebUI.Controllers
             return View(model);
         }
 
+        //View Driver Deliveries
+        public ActionResult DriverDeliveries()
+        {
+            List<Order> orders = orderService.GetOrderList();
+            orders = orderService.GetOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete"))).ToList();
+
+            return View(orders);
+        }
+
         //Prepare Order
         public ActionResult PrepareOrder()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => (p.Driver == "" && p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery")).ToList();
+            orders = orderService.GetOrderList().Where(p => (p.Driver == "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery"))).ToList();
 
             return View(orders);
         }
+
+        //Orders that are ready and need to be collected
+
         //Update Order
 
         [Authorize(Users = "21901959@dut4life.ac.za")]

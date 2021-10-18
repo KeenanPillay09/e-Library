@@ -134,6 +134,26 @@
     <Compile Include="Migrations\202110060903492_ReAddOrderStatusModel.designer.cs">
       <DependentUpon>202110060903492_ReAddOrderStatusModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110071239275_DeletePreBooksTable.cs" />
+    <Compile Include="Migrations\202110071239275_DeletePreBooksTable.designer.cs">
+      <DependentUpon>202110071239275_DeletePreBooksTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110071243195_AddPreBookTable.cs" />
+    <Compile Include="Migrations\202110071243195_AddPreBookTable.designer.cs">
+      <DependentUpon>202110071243195_AddPreBookTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110071301199_AddPreBooksTable.cs" />
+    <Compile Include="Migrations\202110071301199_AddPreBooksTable.designer.cs">
+      <DependentUpon>202110071301199_AddPreBooksTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110120741027_UpdatePreBooksDateTime.cs" />
+    <Compile Include="Migrations\202110120741027_UpdatePreBooksDateTime.designer.cs">
+      <DependentUpon>202110120741027_UpdatePreBooksDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110180753064_AddConstructorToPreBookModel.cs" />
+    <Compile Include="Migrations\202110180753064_AddConstructorToPreBookModel.designer.cs">
+      <DependentUpon>202110180753064_AddConstructorToPreBookModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -205,6 +225,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110060903492_ReAddOrderStatusModel.resx">
       <DependentUpon>202110060903492_ReAddOrderStatusModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110071239275_DeletePreBooksTable.resx">
+      <DependentUpon>202110071239275_DeletePreBooksTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110071243195_AddPreBookTable.resx">
+      <DependentUpon>202110071243195_AddPreBookTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110071301199_AddPreBooksTable.resx">
+      <DependentUpon>202110071301199_AddPreBooksTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110120741027_UpdatePreBooksDateTime.resx">
+      <DependentUpon>202110120741027_UpdatePreBooksDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110180753064_AddConstructorToPreBookModel.resx">
+      <DependentUpon>202110180753064_AddConstructorToPreBookModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

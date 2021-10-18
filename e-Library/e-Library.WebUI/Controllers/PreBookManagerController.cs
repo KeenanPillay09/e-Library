@@ -1,47 +1,46 @@
-﻿using System;
+﻿using e_Library.Core.Contracts;
+using e_Library.Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using e_Library.Core.Models;
 using e_Library.Core.ViewModels;
-using e_Library.DataAccess.InMemory;
-using e_Library.Core.Contracts;
 using System.IO;
 
-namespace MyShop.WebUI.Controllers
+namespace e_Library.WebUI.Controllers
 {
     [Authorize(Users = "21901959@dut4life.ac.za")]
-    public class BookManagerController : Controller
+    public class PreBookManagerController : Controller
     {
-        IRepository<Book> context;
+        IRepository<PreBook> context;
         IRepository<BookGenre> bookGenres;
         IRepository<BookAuthor> bookAuthors;
 
-        public BookManagerController(IRepository<Book> bookContext, IRepository<BookGenre> bookGenreContext, IRepository<BookAuthor> bookAuthorContext) //Needs to inject Repositories from DI Container
+        public PreBookManagerController(IRepository<PreBook> prebookContext, IRepository<BookGenre> bookGenreContext, IRepository<BookAuthor> bookAuthorContext) //Needs to inject Repositories from DI Container
         {
-            context = bookContext;
+            context = prebookContext;
             bookGenres = bookGenreContext;
             bookAuthors = bookAuthorContext;
         }
-        // GET: BookManager
+        // GET: PreBookManager
         public ActionResult Index()
         {
-            List<Book> books = context.Collection().ToList();
+            List<PreBook> books = context.Collection().ToList();
             return View(books);
         }
 
-        public ActionResult Create() 
+        public ActionResult Create()
         {
-            BookManagerViewModel viewModel = new BookManagerViewModel();
+            PreBookManagerViewModel viewModel = new PreBookManagerViewModel();
 
-            viewModel.Book = new Book();
+            viewModel.PreBook = new PreBook();
             viewModel.BookGenres = bookGenres.Collection();
             viewModel.BookAuthors = bookAuthors.Collection();
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Create(Book book,HttpPostedFileBase file)
+        public ActionResult Create(PreBook book, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +51,7 @@ namespace MyShop.WebUI.Controllers
                 if (file != null)
                 {
                     book.Image = book.Id + Path.GetExtension(file.FileName);
-                    file.SaveAs(Server.MapPath("//Content//BookImages//") + book.Image);
+                    file.SaveAs(Server.MapPath("//Content//PreBookImages//") + book.Image);
                 }
                 context.Insert(book);
                 context.Commit();
@@ -63,24 +62,24 @@ namespace MyShop.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            Book book = context.Find(Id);
+            PreBook book = context.Find(Id);
             if (book == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                BookManagerViewModel viewModel = new BookManagerViewModel();
-                viewModel.Book = book;
+                PreBookManagerViewModel viewModel = new PreBookManagerViewModel();
+                viewModel.PreBook = book;
                 viewModel.BookGenres = bookGenres.Collection();
                 viewModel.BookAuthors = bookAuthors.Collection();
                 return View(viewModel);
             }
         }
         [HttpPost]
-        public ActionResult Edit(Book book, string Id, HttpPostedFileBase file)
+        public ActionResult Edit(PreBook book, string Id, HttpPostedFileBase file)
         {
-            Book bookToEdit = context.Find(Id);
+            PreBook bookToEdit = context.Find(Id);
             if (bookToEdit == null)
             {
                 return HttpNotFound();
@@ -104,6 +103,7 @@ namespace MyShop.WebUI.Controllers
                 bookToEdit.Description = book.Description;
                 bookToEdit.Stock = book.Stock;
                 bookToEdit.Price = book.Price;
+                bookToEdit.ReleaseDate = book.ReleaseDate;
 
                 context.Commit();
 
@@ -114,7 +114,7 @@ namespace MyShop.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            Book bookToDelete = context.Find(Id);
+            PreBook bookToDelete = context.Find(Id);
 
             if (bookToDelete == null)
             {
@@ -129,7 +129,7 @@ namespace MyShop.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            Book bookToDelete = context.Find(Id);
+            PreBook bookToDelete = context.Find(Id);
 
             if (bookToDelete == null)
             {

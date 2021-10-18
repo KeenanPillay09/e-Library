@@ -122,8 +122,10 @@ namespace e_Library.WebUI.Controllers
             objOrder.LastName = customer.LastName;
             objOrder.ZipCode = customer.ZipCode;
             objOrder.OrderStatus = "Delivery Required";
+            objOrder.Driver = "";
 
             //Populate Delivery Method from Form
+            objOrder.Delivery = Order.DeliveryType.Courier;
             objOrder.DeliveryMethod = objOrder.DeliveryMethod;
             //Get Basket Total from Method in Basket Service
             objOrder.BasketTotal = basketService.BasketTotal(this.HttpContext);
@@ -162,6 +164,7 @@ namespace e_Library.WebUI.Controllers
             objOrder.Driver = "No Driver Required";
 
             //Populate Delivery Method from Form
+            objOrder.Delivery = Order.DeliveryType.Collect;
             objOrder.DeliveryMethod = objOrder.DeliveryMethod;
             //Get Basket Total from Method in Basket Service
             objOrder.BasketTotal = basketService.BasketTotal(this.HttpContext);
@@ -201,7 +204,7 @@ namespace e_Library.WebUI.Controllers
             decimal fTotal = FinalTotal;
             
             fTotal = Decimal.Ceiling(fTotal);
-                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
+                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=peakylibrary@outlook.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
                // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
 
             return Redirect(url);

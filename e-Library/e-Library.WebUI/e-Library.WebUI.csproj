@@ -210,7 +210,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderManagerController.cs" />
     <Compile Include="Controllers\OrderStatusManagerController.cs" />
-    <Compile Include="Controllers\PreOrderManagerController.cs" />
+    <Compile Include="Controllers\PreBookManagerController.cs" />
     <Compile Include="Controllers\PurchaseBookController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -422,14 +422,6 @@
     <Content Include="Views\Basket\TestEmail.cshtml" />
     <Content Include="Views\OrderManager\DriverPortal.cshtml" />
     <Content Include="Views\OrderManager\GenerateQRCode.cshtml" />
-    <Content Include="Views\PreOrderManager\Index.cshtml" />
-    <Content Include="Views\PreOrderManager\Create.cshtml" />
-    <Content Include="Views\PreOrderManager\Edit.cshtml" />
-    <Content Include="Views\PreOrderManager\Delete.cshtml" />
-    <Content Include="Views\PreOrderManager\Details.cshtml" />
-    <Content Include="Views\PreOrderManager\DisplayPreOrders.cshtml" />
-    <Content Include="Views\PreOrderManager\ContactForm.cshtml" />
-    <Content Include="Views\PreOrderManager\PreOrderForm.cshtml" />
     <Content Include="Views\Chart\DisplayChart.cshtml" />
     <Content Include="Views\Chart\ChartOptions.cshtml" />
     <Content Include="Views\Chart\Index.cshtml" />
@@ -439,10 +431,16 @@
     <Content Include="Views\OrderStatusManager\Delete.cshtml" />
     <Content Include="Views\OrderManager\DisplayOrdersWithFilter.cshtml" />
     <Content Include="Views\OrderManager\PrepareOrder.cshtml" />
+    <Content Include="Views\PreBookManager\Index.cshtml" />
+    <Content Include="Views\PreBookManager\Edit.cshtml" />
+    <Content Include="Views\PreBookManager\Delete.cshtml" />
+    <Content Include="Views\PreBookManager\Create.cshtml" />
+    <Content Include="Views\OrderManager\DriverDeliveries.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\BookImages\" />
+    <Folder Include="Content\PreBookImages\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
