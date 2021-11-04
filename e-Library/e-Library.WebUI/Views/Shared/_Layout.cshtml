@@ -26,7 +26,7 @@
             background-position: center;
         }
     </style>*@
-    <div class="navbar navbar-inverse navbar-fixed-top" @*style="border: none; background-image: url('../../Content/BG.PNG'); font-size: 15px;"*@>
+    <div class="navbar navbar-default navbar-fixed-top" @*style="border: none; background-image: url('../../Content/BG.PNG'); font-size: 15px;"*@>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -39,9 +39,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated && User.Identity.Name == "21901959@dut4life.ac.za")
-                    {
+                     {
                         <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
-                    }
+                     }
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     @*<li>@Html.ActionLink("Map", "Map", "Home")</li>*@
@@ -50,7 +50,7 @@
            <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
         }*@
                     <li>@Html.ActionLink("Purchase Books", "Index", "PurchaseBook")</li>
-                    <li>@Html.ActionLink("Chart Options", "ChartOptions", "Chart")</li>
+                    <li>@Html.ActionLink("Pre-Orders", "ChartOptions", "Chart")</li>
                     @*<li>@Html.ActionLink("Borrow Books", "Contact", "Home")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")

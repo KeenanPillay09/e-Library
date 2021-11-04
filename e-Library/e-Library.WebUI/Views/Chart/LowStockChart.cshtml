@@ -1,4 +1,5 @@
-﻿@{@model IEnumerable<e_Library.Core.Models.Book>
+﻿@{
+@model IEnumerable<e_Library.Core.Models.Book>
 
     //Count Books
     var bookCount = 0;
@@ -38,12 +39,12 @@
     //Array.Sort(yStock);
 
     //Most Popular Books
-    var myChart3 = new Chart(width: 1200, height: 600 ,theme: ChartTheme.Green)
-    .AddTitle("Book Stock Levels")
+    var myChart3 = new Chart(width: 1000, height: 500, theme: ChartTheme.Yellow)
+    //.AddTitle("Book Stock Levels")
     .AddSeries(
     name: "Stock",
-    xValue: new[] { xName[0], xName[1], xName[2], xName[3], xName[4], xName[5],xName[6],xName[7],xName[8],xName[9]  }, //Array for x value
-    yValues: new[] { yStock[0], yStock[1], yStock[2], yStock[3], yStock[4], yStock[5], yStock[6], yStock[7], yStock[8],yStock[9] }) //Array for y value
+    xValue: new[] { xName[0], xName[1], xName[2], xName[3], xName[4] }, //Array for x value
+    yValues: new[] { yStock[0], yStock[1], yStock[2], yStock[3], yStock[4] }) //Array for y value
     .Write();
 
 

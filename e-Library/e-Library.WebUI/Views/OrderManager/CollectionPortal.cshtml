@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Order Collected Successfully!";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  Meta  -->
+    <meta charset="UTF-8" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--  Styles  -->
+    <link rel="stylesheet" href="~/Content/thankyou.css">
+
+</head>
+
+<body>
+    <!-- thank-you-wrapper -->
+    <section class="thank-you-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                    <div class="thank-you-page-content">
+                        <h1>Order has been successfully delivered! </h1>
+                        @*Your Order Id = @ViewBag.OrderId*@
+                        <br />
+                        <br />
+                        <a href="@Url.Action("Index", "Home")" class="btn btn-primary arrow-icon"> Go back to Home </a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <br />
+        <div class="progress">
+            <div class="progress-bar" style="width: 100%;"></div>
+        </div>
+    </section>
+    <!-- thank-you-wrapper -->
+    <!-- Scripts -->
+    <script src="scripts/index.js"></script>
+</body>
+
+</html>

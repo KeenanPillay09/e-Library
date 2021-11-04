@@ -83,7 +83,7 @@ namespace e_Library.WebUI.Controllers
         [Authorize]
         public ActionResult Checkout(Order order)
         {
-
+            //order.Area = order.Area;
             order.OrderStatus = "Order Created";
             order.Email = User.Identity.Name;
             
@@ -122,11 +122,21 @@ namespace e_Library.WebUI.Controllers
             objOrder.LastName = customer.LastName;
             objOrder.ZipCode = customer.ZipCode;
             objOrder.OrderStatus = "Delivery Required";
+
+
+
             objOrder.Driver = "";
 
             //Populate Delivery Method from Form
             objOrder.Delivery = Order.DeliveryType.Courier;
             objOrder.DeliveryMethod = objOrder.DeliveryMethod;
+            objOrder.DeliveryDate = objOrder.CalcDeliveryDate();
+
+            //Determine Suburb
+            objOrder.Area = objOrder.Area;
+            objOrder.Suburb = objOrder.DetermineSuburb();
+
+
             //Get Basket Total from Method in Basket Service
             objOrder.BasketTotal = basketService.BasketTotal(this.HttpContext);
             //Calculate Final Total from Method in Model
@@ -163,9 +173,15 @@ namespace e_Library.WebUI.Controllers
             objOrder.OrderStatus = "Pending Collection";
             objOrder.Driver = "No Driver Required";
 
-            //Populate Delivery Method from Form
+            //Populate Delivery Method and determine Delivery Date from Form
             objOrder.Delivery = Order.DeliveryType.Collect;
             objOrder.DeliveryMethod = objOrder.DeliveryMethod;
+            objOrder.DeliveryDate = objOrder.CalcDeliveryDate();
+
+            //Determine Suburb
+            //objOrder.Area = objOrder.Area;
+            //objOrder.Suburb = objOrder.DetermineSuburb();
+
             //Get Basket Total from Method in Basket Service
             objOrder.BasketTotal = basketService.BasketTotal(this.HttpContext);
             //Calculate Final Total from Method in Model
@@ -188,12 +204,13 @@ namespace e_Library.WebUI.Controllers
         public ActionResult OrderSummary(string Id)
         {
             Order order = orderService.GetOrder(Id);
+            Session["OrderID"] = Id;
             return View(order);
         }
         [HttpPost]
         public ActionResult OrderSummary(Order objOrder)
         {
-            return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal });
+            return RedirectToAction("Payment", new { FinalTotal = objOrder.FinalTotal});
         }
 
 
@@ -204,7 +221,7 @@ namespace e_Library.WebUI.Controllers
             decimal fTotal = FinalTotal;
             
             fTotal = Decimal.Ceiling(fTotal);
-                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=peakylibrary@outlook.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou"; //localhost
+                url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=peakylibrary@outlook.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou/"; //localhost
                // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
 
             return Redirect(url);
@@ -214,9 +231,12 @@ namespace e_Library.WebUI.Controllers
 
         public ActionResult ThankYou() 
         {
+            //Get Customer Details
             Customer customer = customers.Collection().FirstOrDefault(c => c.Email == User.Identity.Name); //Returns the user
             string fname = customer.FirstName; //name
 
+            //Get Order Details
+            
 
             string receiver = customer.Email;
             string subject = "E-Library Order Confirmation  ";

@@ -8,6 +8,7 @@ using e_Library.Core.ViewModels;
 using e_Library.DataAccess.InMemory;
 using e_Library.Core.Contracts;
 using System.IO;
+using System.Data;
 
 namespace MyShop.WebUI.Controllers
 {
@@ -141,6 +142,49 @@ namespace MyShop.WebUI.Controllers
                 context.Commit();
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult Dashboard()
+        {
+            List<Book> list = context.Collection().Where(p => p.Stock > 0).ToList();
+            List<int> repartitons = new List<int>();
+
+            var totalsales = context.Collection().OrderBy(p => p.Name).OrderByDescending(p => p.Stock).ToList();
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("BookName", Type.GetType("System.String"));
+            dt.Columns.Add("Stock", System.Type.GetType("System.Int32"));
+
+            int iCnt = 0;
+            foreach (Book book in totalsales)
+            {
+                //for (int i = 0; i < 5; i++)
+                //{
+                    DataRow dr = dt.NewRow();
+                    dr["BookName"] = book.Name;
+                    dr["Stock"] = book.Stock;
+                    dt.Rows.Add(dr);
+                    iCnt++;
+                    if (iCnt==5)
+                    {
+                    break;
+                    }
+                //}
+                //bookName = "";
+                //stock = 0;
+            }
+
+            List<object> iData = new List<object>();
+            foreach (DataColumn dc in dt.Columns)
+            {
+                List<object> x = new List<object>();
+                x = (from DataRow drr in dt.Rows select drr[dc.ColumnName]).ToList();
+                iData.Add(x);
+            }
+            ViewBag.ChartData = iData;
+
+            return View();
+
         }
     }
 }

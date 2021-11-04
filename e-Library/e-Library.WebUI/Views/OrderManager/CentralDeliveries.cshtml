@@ -1,0 +1,79 @@
+﻿@model IEnumerable<e_Library.Core.Models.Order>
+
+<h3>Central Deliveries</h3>
+
+<table class="table">
+    <tr>
+        <th>
+            Delivery Date
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DeliveryMethod)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Suburb)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Driver)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QRCode)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.OrderStatus)
+        </th>*@
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Street)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.City)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryMethod)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Suburb)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Driver)
+    </td>
+    <td>
+        <img class="img-thumbnail" style="height:50px" src="~/Content/QRCodes/@item.QRCode" />
+    </td>
+    <td>
+        <a href="@Url.Action("DelayOrder","OrderManager", new { Id=item.Id })" class="btn btn-danger">Delay Order</a>
+    </td>
+</tr>
+    }
+
+</table>
+
+
+

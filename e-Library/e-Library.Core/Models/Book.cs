@@ -27,5 +27,14 @@ namespace e_Library.Core.Models
         public int Stock { get; set; }
         public string Image { get; set; }
 
+        [DisplayName("Number of Sales")]
+        public int NumSales { get; set; }
+
+        [DisplayName("Number of Orders")]
+        public int NumOrders { get; set; }
+
+        [DisplayName("Total Sales")]
+        public decimal TotalSales { get; set; }
+
     }
 }

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<e_Library.Core.Models.OrderItem>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        <img class="img-thumbnail" style="height:100px" src="~/Content/BookImages/@item.Image" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BookName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Quantity)
+    </td>
+    <td>
+        @String.Format("{0:c}", item.Price * item.Quantity)
+    </td>
+
+</tr>
+    }
+</table>
+

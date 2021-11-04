@@ -96,8 +96,32 @@ namespace e_Library.Services
             {
                 item.Quantity = item.Quantity + 1;
             }
-
             basketContext.Commit();
+
+            //Increase Number of Sales
+
+            Book bookToEdit = bookContext.Find(bookId);
+
+            int bookQuantity = item.Quantity;
+            decimal bookPrice = bookToEdit.Price;
+
+            bookToEdit.NumSales += 1;
+            bookToEdit.TotalSales += bookPrice;
+
+            //Decrease Stock
+
+            bookToEdit.Stock -= 1;
+
+            //Add to Number of Orders
+
+
+
+            if (bookQuantity < 2)
+            {
+                bookToEdit.NumOrders += 1;
+            }
+
+            bookContext.Commit();
         }
 
         public void RemoveFromBasket(HttpContextBase httpContext, string itemId)
@@ -110,6 +134,25 @@ namespace e_Library.Services
                 basket.BasketItems.Remove(item);
                 basketContext.Commit();
             }
+            //Decrease Number of Sales
+
+            string bookId = item.BookId;
+            Book bookToEdit = bookContext.Find(bookId);
+
+            int bookQuantity = item.Quantity;
+            decimal bookPrice = bookToEdit.Price;
+
+            bookToEdit.NumSales -= bookQuantity;
+            bookToEdit.TotalSales -= (bookPrice * bookQuantity);
+
+            //Increase Stock
+
+            bookToEdit.Stock += bookQuantity;
+
+            //Decrease Number of Orders
+            bookToEdit.NumOrders -= 1;
+
+            bookContext.Commit();
         }
 
         public List<BasketItemViewModel> GetBasketItems(HttpContextBase httpContext)

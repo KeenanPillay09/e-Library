@@ -205,6 +205,7 @@
     <Compile Include="Controllers\BookGenreManagerController.cs" />
     <Compile Include="Controllers\BookManagerController.cs" />
     <Compile Include="Controllers\ChartController.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\DriverManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -422,7 +423,7 @@
     <Content Include="Views\Basket\TestEmail.cshtml" />
     <Content Include="Views\OrderManager\DriverPortal.cshtml" />
     <Content Include="Views\OrderManager\GenerateQRCode.cshtml" />
-    <Content Include="Views\Chart\DisplayChart.cshtml" />
+    <Content Include="Views\Chart\LowStockChart.cshtml" />
     <Content Include="Views\Chart\ChartOptions.cshtml" />
     <Content Include="Views\Chart\Index.cshtml" />
     <Content Include="Views\OrderStatusManager\Index.cshtml" />
@@ -430,17 +431,44 @@
     <Content Include="Views\OrderStatusManager\Edit.cshtml" />
     <Content Include="Views\OrderStatusManager\Delete.cshtml" />
     <Content Include="Views\OrderManager\DisplayOrdersWithFilter.cshtml" />
-    <Content Include="Views\OrderManager\PrepareOrder.cshtml" />
+    <Content Include="Views\OrderManager\PrepareOrderForDelivery.cshtml" />
     <Content Include="Views\PreBookManager\Index.cshtml" />
     <Content Include="Views\PreBookManager\Edit.cshtml" />
     <Content Include="Views\PreBookManager\Delete.cshtml" />
     <Content Include="Views\PreBookManager\Create.cshtml" />
     <Content Include="Views\OrderManager\DriverDeliveries.cshtml" />
+    <Content Include="Views\OrderManager\PrepareOrderForCollection.cshtml" />
+    <Content Include="Views\OrderManager\PrepareDelivery.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\OrderManager\NorthDeliveries.cshtml" />
+    <Content Include="Views\OrderManager\CentralDeliveries.cshtml" />
+    <Content Include="Views\OrderManager\SouthDeliveries.cshtml" />
+    <Content Include="Views\OrderManager\OuterWestDeliveries.cshtml" />
+    <Content Include="Views\OrderManager\InnerWestDeliveries.cshtml" />
+    <Content Include="Views\OrderManager\DelayOrder.cshtml" />
+    <Content Include="Views\OrderManager\CollectionPortal.cshtml" />
+    <Content Include="Views\OrderManager\OrderCollections.cshtml" />
+    <Content Include="Views\OrderManager\PrepareCollection.cshtml" />
+    <Content Include="Views\OrderManager\CollectionDelay.cshtml" />
+    <Content Include="Views\BookManager\Dashboard.cshtml" />
+    <Content Include="Views\Chart\ShowLowStock.cshtml" />
+    <Content Include="Views\Chart\MostPopularChart.cshtml" />
+    <Content Include="Views\Chart\ShowMostPopular.cshtml" />
+    <Content Include="Views\Chart\NumberSalesChart.cshtml" />
+    <Content Include="Views\Chart\ShowNumberSales.cshtml" />
+    <Content Include="Views\Chart\TotalSalesChart.cshtml" />
+    <Content Include="Views\Chart\ShowTotalSales.cshtml" />
+    <Content Include="Views\OrderManager\ViewAllOrders.cshtml" />
+    <Content Include="Views\OrderManager\ReturnOrder.cshtml" />
+    <Content Include="Views\OrderManager\ReturnOrderItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\BookImages\" />
     <Folder Include="Content\PreBookImages\" />
+    <Folder Include="Content\QRCodes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

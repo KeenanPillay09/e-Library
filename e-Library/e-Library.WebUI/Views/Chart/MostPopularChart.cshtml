@@ -1,0 +1,53 @@
+﻿@{
+    @model IEnumerable<e_Library.Core.Models.Book>
+
+    //Count Books
+    var bookCount = 0;
+    foreach (var book in Model)
+    {
+        bookCount = bookCount + 1;
+    }
+    //Populate Books in Array (x/y)
+
+    //Array for x value
+    string[] xName = new string[bookCount];
+
+    //Array for y value
+    string[] yStock = new string[bookCount];
+
+    int iCount = 0; //How many times the loop runs
+
+    foreach (var book in Model) //Runs for each book
+    {
+        string x = "";
+        string y = "";
+
+        x = book.Name;
+        y = (book.NumOrders).ToString();
+
+
+        xName[iCount] = x;
+        yStock[iCount] = y;
+
+        iCount = iCount + 1;
+    }
+
+
+
+
+    //Array.Sort(xName);
+    //Array.Sort(yStock);
+
+    //Most Popular Books
+    var myChart3 = new Chart(width: 1000, height: 500, theme: ChartTheme.Yellow)
+    .AddSeries(
+    name: "Stock",
+    xValue: new[] { xName[0], xName[1], xName[2], xName[3], xName[4] }, //Array for x value
+    yValues: new[] { yStock[0], yStock[1], yStock[2], yStock[3], yStock[4] }) //Array for y value
+    .Write();
+
+
+
+
+}
+

@@ -154,6 +154,50 @@
     <Compile Include="Migrations\202110180753064_AddConstructorToPreBookModel.designer.cs">
       <DependentUpon>202110180753064_AddConstructorToPreBookModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110181452382_UpdateOrdersTable.cs" />
+    <Compile Include="Migrations\202110181452382_UpdateOrdersTable.designer.cs">
+      <DependentUpon>202110181452382_UpdateOrdersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110200854167_CalcDeliveryDateOrdersModel.cs" />
+    <Compile Include="Migrations\202110200854167_CalcDeliveryDateOrdersModel.designer.cs">
+      <DependentUpon>202110200854167_CalcDeliveryDateOrdersModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110251021236_UpdateOrdersModel.cs" />
+    <Compile Include="Migrations\202110251021236_UpdateOrdersModel.designer.cs">
+      <DependentUpon>202110251021236_UpdateOrdersModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110261447271_AddAreaToOrders.cs" />
+    <Compile Include="Migrations\202110261447271_AddAreaToOrders.designer.cs">
+      <DependentUpon>202110261447271_AddAreaToOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110270731291_AddPalmietToOrders.cs" />
+    <Compile Include="Migrations\202110270731291_AddPalmietToOrders.designer.cs">
+      <DependentUpon>202110270731291_AddPalmietToOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110270739573_MakeSuburbNullOrders.cs" />
+    <Compile Include="Migrations\202110270739573_MakeSuburbNullOrders.designer.cs">
+      <DependentUpon>202110270739573_MakeSuburbNullOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110270821271_AddSuburbToDrivers.cs" />
+    <Compile Include="Migrations\202110270821271_AddSuburbToDrivers.designer.cs">
+      <DependentUpon>202110270821271_AddSuburbToDrivers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110291356352_AddOverportToOrders.cs" />
+    <Compile Include="Migrations\202110291356352_AddOverportToOrders.designer.cs">
+      <DependentUpon>202110291356352_AddOverportToOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111010748495_UpdateDateNameOrders.cs" />
+    <Compile Include="Migrations\202111010748495_UpdateDateNameOrders.designer.cs">
+      <DependentUpon>202111010748495_UpdateDateNameOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111020738283_AddSalesToBooks.cs" />
+    <Compile Include="Migrations\202111020738283_AddSalesToBooks.designer.cs">
+      <DependentUpon>202111020738283_AddSalesToBooks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111020755052_AddNumOrdersToBooks.cs" />
+    <Compile Include="Migrations\202111020755052_AddNumOrdersToBooks.designer.cs">
+      <DependentUpon>202111020755052_AddNumOrdersToBooks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -240,6 +284,39 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110180753064_AddConstructorToPreBookModel.resx">
       <DependentUpon>202110180753064_AddConstructorToPreBookModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110181452382_UpdateOrdersTable.resx">
+      <DependentUpon>202110181452382_UpdateOrdersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110200854167_CalcDeliveryDateOrdersModel.resx">
+      <DependentUpon>202110200854167_CalcDeliveryDateOrdersModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110251021236_UpdateOrdersModel.resx">
+      <DependentUpon>202110251021236_UpdateOrdersModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110261447271_AddAreaToOrders.resx">
+      <DependentUpon>202110261447271_AddAreaToOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110270731291_AddPalmietToOrders.resx">
+      <DependentUpon>202110270731291_AddPalmietToOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110270739573_MakeSuburbNullOrders.resx">
+      <DependentUpon>202110270739573_MakeSuburbNullOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110270821271_AddSuburbToDrivers.resx">
+      <DependentUpon>202110270821271_AddSuburbToDrivers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110291356352_AddOverportToOrders.resx">
+      <DependentUpon>202110291356352_AddOverportToOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111010748495_UpdateDateNameOrders.resx">
+      <DependentUpon>202111010748495_UpdateDateNameOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111020738283_AddSalesToBooks.resx">
+      <DependentUpon>202111020738283_AddSalesToBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111020755052_AddNumOrdersToBooks.resx">
+      <DependentUpon>202111020755052_AddNumOrdersToBooks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

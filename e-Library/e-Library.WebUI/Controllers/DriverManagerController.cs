@@ -75,6 +75,7 @@ namespace MyShop.WebUI.Controllers
                 driverToEdit.Email = driver.Email;
                 driverToEdit.City = driver.City;
                 driverToEdit.Street = driver.Street;
+                driverToEdit.Suburb = driver.Suburb;
 
 
                 context.Commit();

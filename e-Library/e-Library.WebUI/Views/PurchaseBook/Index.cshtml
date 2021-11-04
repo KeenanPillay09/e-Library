@@ -38,7 +38,14 @@
   
         </div>
         <div class="col-md-12">
-            <a href="@Url.Action("AddToBasket", "Basket", new { Id=item.Id })" class="btn btn-primary" style="padding:8px;">Add to Basket</a>
+            @if (item.Stock == 0)
+            {
+                <a href="#" class="btn btn-danger disabled" style="padding:8px; ">No Stock</a>
+            }
+            else if (item.Stock > 0)
+            {
+                <a href="@Url.Action("AddToBasket", "Basket", new { Id=item.Id })" class="btn btn-primary" style="padding:8px;">Add to Basket</a>
+            }
         </div>
     </div>
     }
