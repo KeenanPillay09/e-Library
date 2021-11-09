@@ -614,7 +614,188 @@ namespace e_Library.WebUI.Controllers
         {
             Order order = orderService.GetOrder(Id);
 
-            return View(order);
+            Return returns = new Return();
+
+            returns.CustomerName = order.FirstName + " " + order.LastName;
+            returns.Email = order.Email;
+            returns.OrderID = order.Id;
+
+
+            return View(returns);
         }
+        [HttpPost]
+        public ActionResult ReturnOrder(Return returns)
+        {
+            returns.Id = null;
+            returns.Status = "Pending";
+
+            Return returnedOrder = new Return();
+
+            returnedOrder.OrderID = returns.OrderID;
+            returnedOrder.CustomerName = returns.CustomerName;
+            returnedOrder.Email = returns.Email;
+            returnedOrder.Reason = returns.Reason;
+            returnedOrder.RefundType = returns.RefundType;
+            returnedOrder.Status = returns.Status;
+
+            orderService.CreateReturn(returnedOrder);
+
+            return View("ReturnConfirmationPage");
+        }
+
+        public ActionResult ReturnConfirmationPage()
+        {
+            return View();
+        }
+
+        //Admin
+
+        public ActionResult DisplayReturns(string Status = null)
+        {
+            List<Return> returns;
+
+            if (Status == null)
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == "Pending").ToList();
+            }
+            else
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).ToList();
+            }
+            return View(returns);
+        }
+        public ActionResult ApprovedReturns(string Status = null)
+        {
+            //List<Return> returns = orderService.GetReturnList().Where(p => p.Status == "Approved").ToList();
+            //return View(returns);
+            List<Return> returns;
+
+            if (Status == null)
+            {
+                returns = orderService.GetReturnList();
+            }
+            else
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).ToList();
+            }
+            return View(returns);
+        }
+
+        public ActionResult CompleteReturns(string Status = null)
+        {
+            List<Return> returns;
+
+            if (Status == null)
+            {
+                returns = orderService.GetReturnList();
+            }
+            else
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).ToList();
+            }
+            return View(returns);
+        }
+
+
+        public ActionResult ReturnedItems(string Id, string OrderId)
+        {
+            Order order = orderService.GetOrder(OrderId);
+
+            orderService.UpdateReturnedStock(order);
+
+            Return returnOrder = orderService.GetOrderReturn(Id);
+            returnOrder.Status = "Return Complete";
+            orderService.UpdateReturn(returnOrder);
+
+            return RedirectToAction("DisplayReturns");
+        }
+
+
+        public ActionResult ManageReturn(string Id,string OrderId) //Id is the Return ID
+        {
+            ViewBag.StatusList = new List<string>() {
+                "Pending",
+                "Approved",
+                "Rejected"
+            };
+
+            //Order order = orderService.GetOrder(Id);
+            Return returnOrder = orderService.GetOrderReturn(Id);
+
+            //returnOrder.OrderID = OrderId;
+
+            return View(returnOrder);
+        }
+
+        [HttpPost]
+        public ActionResult ManageReturn(Return returnedOrder, string Id)
+        {
+            Return returnOrder = orderService.GetOrderReturn(Id);
+
+            returnOrder.Status = returnedOrder.Status;
+            string retStatus = returnedOrder.Status;
+
+            orderService.UpdateReturn(returnOrder);
+
+
+
+            //Send Email to Customer
+            string customer = returnOrder.Email; //Returns the customers email
+            string fname = returnOrder.CustomerName; //Returns the customers first name
+
+            string message = "";
+
+            if (retStatus == "Approved")
+            {
+                message = "Hi " + fname + " Your order has been approved for return. Please drop off the order at the address below to receive your refund! <br/>" +
+                "e-Library Address: Anton Lembede St, Durban Central, Durban, 4000 <br/>" +
+                "Hours: 8am - 5pm (Monday-Sunday)";
+            }
+            else if (retStatus == "Rejected")
+            {
+                message = "Hi " + fname + " Unfortunately your order return request has been rejected. This is due to the 48 hour return period expiring! <br/>" +
+                "We hope to see you soon!";
+
+            }
+
+            string receiver = customer;
+            string subject = "E-Library Order Return";
+
+
+            try
+            {
+
+                var senderEmail = new MailAddress("peakylibrary@outlook.com", "e-Library");
+                var receiverEmail = new MailAddress(receiver, "Receiver");
+                var password = "Ballantines2021";
+                var sub = subject;
+                var body = message;
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp-mail.outlook.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(senderEmail.Address, password)
+                };
+                using (var mess = new MailMessage(senderEmail, receiverEmail)
+                {
+                    Subject = subject,
+                    Body = body,
+                })
+                {
+                    smtp.Send(mess);
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.Error = "Some Error";
+            }
+
+            return RedirectToAction("DisplayReturns");
+        }
+
+
     }
 }

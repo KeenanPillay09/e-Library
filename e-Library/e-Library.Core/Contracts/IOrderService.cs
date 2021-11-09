@@ -14,6 +14,11 @@ namespace e_Library.Core.Contracts
         List<Order> GetOrderList();
         Order GetOrder(string Id);
         void UpdateOrder(Order updatedOrder);
+        List<Return> GetReturnList();
+        Return GetOrderReturn(string Id);
+        void CreateReturn(Return returnedOrder);
+        void UpdateReturn(Return updatedReturn);
+        void UpdateReturnedStock(Order ordertoReturn);
 
     }
 }

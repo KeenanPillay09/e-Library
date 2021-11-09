@@ -198,6 +198,10 @@
     <Compile Include="Migrations\202111020755052_AddNumOrdersToBooks.designer.cs">
       <DependentUpon>202111020755052_AddNumOrdersToBooks.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111040903522_AddReturnModel.cs" />
+    <Compile Include="Migrations\202111040903522_AddReturnModel.designer.cs">
+      <DependentUpon>202111040903522_AddReturnModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -317,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111020755052_AddNumOrdersToBooks.resx">
       <DependentUpon>202111020755052_AddNumOrdersToBooks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111040903522_AddReturnModel.resx">
+      <DependentUpon>202111040903522_AddReturnModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

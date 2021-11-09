@@ -1,0 +1,6 @@
+﻿@model e_Library.Core.Models.Order
+@using (Html.BeginForm())
+ {
+
+    @Html.Partial("OrderItems", Model.OrderItems)
+ }

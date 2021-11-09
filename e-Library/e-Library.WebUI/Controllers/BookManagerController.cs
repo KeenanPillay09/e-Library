@@ -105,6 +105,9 @@ namespace MyShop.WebUI.Controllers
                 bookToEdit.Description = book.Description;
                 bookToEdit.Stock = book.Stock;
                 bookToEdit.Price = book.Price;
+                bookToEdit.NumOrders = bookToEdit.NumOrders;
+                bookToEdit.NumSales = bookToEdit.NumSales;
+                bookToEdit.TotalSales = bookToEdit.TotalSales;
 
                 context.Commit();
 

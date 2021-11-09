@@ -461,8 +461,15 @@
     <Content Include="Views\Chart\TotalSalesChart.cshtml" />
     <Content Include="Views\Chart\ShowTotalSales.cshtml" />
     <Content Include="Views\OrderManager\ViewAllOrders.cshtml" />
-    <Content Include="Views\OrderManager\ReturnOrder.cshtml" />
     <Content Include="Views\OrderManager\ReturnOrderItems.cshtml" />
+    <Content Include="Views\OrderManager\ReturnOrder.cshtml" />
+    <Content Include="Views\OrderManager\ReturnConfirmationPage.cshtml" />
+    <Content Include="Views\OrderManager\DisplayReturns.cshtml" />
+    <Content Include="Views\OrderManager\DisplayOrderItems.cshtml" />
+    <Content Include="Views\OrderManager\ManageReturn.cshtml" />
+    <Content Include="Views\OrderManager\ApprovedReturns.cshtml" />
+    <Content Include="Views\OrderManager\ReturnedItems.cshtml" />
+    <Content Include="Views\OrderManager\CompleteReturns.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

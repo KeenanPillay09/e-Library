@@ -60,6 +60,7 @@
         <div class="panel-body">
             <div class="list-group">
                 @Html.ActionLink("Display Current Orders", "DisplayOrdersWithFilter", "OrderManager", null, new { @class = "list-group-item" })
+                @Html.ActionLink("Manage Returns", "DisplayReturns", "OrderManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Prepare Orders for Delivery", "PrepareOrderForDelivery", "OrderManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Prepare Orders for Collection", "PrepareOrderForCollection", "OrderManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Driver Deliveries", "DriverDeliveries", "OrderManager", null, new { @class = "list-group-item" })

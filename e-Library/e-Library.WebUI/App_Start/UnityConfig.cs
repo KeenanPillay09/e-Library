@@ -57,6 +57,7 @@ namespace e_Library.WebUI
             container.RegisterType<IRepository<Driver>, SQLRepository<Driver>>();
             container.RegisterType<IRepository<OrderStatusModel>, SQLRepository<OrderStatusModel>>();
             container.RegisterType<IRepository<PreBook>, SQLRepository<PreBook>>();
+            container.RegisterType<IRepository<Return>, SQLRepository<Return>>();
 
             container.RegisterType<IBasketService, BasketService>();
             container.RegisterType<IOrderService, OrderService>();

@@ -10,9 +10,9 @@
     <div class="list-group">
         @Html.ActionLink("All", "DisplayOrdersWithFilter", null, new { @class = Request["Status"] == null ? "list-group-item active" : "list-group-item" })
         @foreach (var cat in Model.OrderStatusModels)
-        {
+         {
             @Html.ActionLink(cat.OrderStatus, "DisplayOrdersWithFilter", new { Status = cat.OrderStatus }, new { @class = Request["Status"] == cat.OrderStatus ? "list-group-item active" : "list-group-item" })
-        }
+         }
     </div>
 </div>
 

@@ -1,0 +1,54 @@
+﻿@model IEnumerable<e_Library.Core.Models.Return>
+
+<h2>Completed Returns</h2>
+
+<div class="col-md-2">
+    <h4>Filter</h4>
+    <div class="list-group">
+        @*@Html.ActionLink("All", "DisplayReturns", null, new { @class = Request["Status"] == null ? "list-group-item active" : "list-group-item" })*@
+
+        @Html.ActionLink("Pending", "DisplayReturns", new { Status = "Pending" }, new { @class = Request["Status"] == "Pending" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("Approved", "ApprovedReturns", new { Status = "Approved" }, new { @class = Request["Status"] == "Approved" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("Rejected", "DisplayReturns", new { Status = "Rejected" }, new { @class = Request["Status"] == "Rejected" ? "list-group-item active" : "list-group-item" })
+        @Html.ActionLink("Return Complete", "CompleteReturns", new { Status = "Return Complete" }, new { @class = Request["Status"] == "Return Complete" ? "list-group-item active" : "list-group-item" })
+    </div>
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+        </tr>
+    }
+
+</table>
+
+

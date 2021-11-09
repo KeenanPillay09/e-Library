@@ -12,9 +12,14 @@ namespace e_Library.Services
     public class OrderService : IOrderService
     {
         IRepository<Order> orderContext;
-        public OrderService(IRepository<Order> OrderContext)
+        IRepository<Return> returnContext;
+        IRepository<Book> bookContext;
+
+        public OrderService(IRepository<Order> OrderContext, IRepository<Return> ReturnContext, IRepository<Book> BookContext)
         {
             this.orderContext = OrderContext;
+            this.returnContext = ReturnContext;
+            this.bookContext = BookContext;
         }
 
         public void CreateOrder(Order baseOrder, List<BasketItemViewModel> basketItems)
@@ -49,6 +54,54 @@ namespace e_Library.Services
         {
             orderContext.Update(updatedOrder);
             orderContext.Commit();
+        }
+
+        public List<Return> GetReturnList() //Returns list of returns
+        {
+            return returnContext.Collection().ToList();
+        }
+
+        public Return GetOrderReturn(string Id) //Returns an individual return
+        {
+            return returnContext.Find(Id);
+        }
+
+        public void CreateReturn(Return returnedOrder)
+        {
+            returnContext.Insert(returnedOrder);
+            returnContext.Commit();
+        }
+
+        public void UpdateReturn(Return updatedReturn)
+        {
+            returnContext.Update(updatedReturn);
+            returnContext.Commit();
+        }
+
+        public void UpdateReturnedStock(Order ordertoReturn)
+        {
+            int iNumItems = ordertoReturn.OrderItems.Count;
+
+            List<OrderItem> orderItems = ordertoReturn.OrderItems.ToList();
+            string bId = "";
+            string bName = "";
+            int bQuantity = 0;
+            for (int i = 0; i < iNumItems; i++)
+            {
+                bId = orderItems[i].BookId.ToString();
+                bQuantity = orderItems[i].Quantity;
+
+                bName = orderItems[i].BookName.ToString();
+
+                Book book = new Book();
+                var findBookId = bookContext.Collection().Where(d => d.Name == bName).FirstOrDefault();
+                string newId = findBookId.Id;
+
+
+                Book bookToEdit = bookContext.Find(newId);
+                bookToEdit.Stock -= bQuantity;
+                bookContext.Commit();
+            }
         }
     }
 }
