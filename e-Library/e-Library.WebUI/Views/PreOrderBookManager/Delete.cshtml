@@ -1,10 +1,10 @@
-﻿@model e_Library.Core.Models.PreBook
+﻿@model e_Library.Core.Models.PreOrderBook
 
 @{
-    ViewBag.Title = "Manage Pre-Order Books";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Manage Pre-Order Books</h2>
+<h2>Removal</h2>
 
 <h3>Are you sure you want to delete @Model.Name?</h3>
 <div>
@@ -41,13 +41,7 @@
         <dd>
             @Html.DisplayFor(model => model.Genre)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ReleaseDate)
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Price)
         </dt>
@@ -71,9 +65,15 @@
         <dd>
             @Html.DisplayFor(model => model.Image)
         </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
         <dd>
-            <img class="img-thumbnail" style="height:300px" padding:10px src="~/Content/PreBookImages/@Model.Image" />
+            @Html.DisplayFor(model => model.ReleaseDate)
         </dd>
+
     </dl>
 
     @using (Html.BeginForm())

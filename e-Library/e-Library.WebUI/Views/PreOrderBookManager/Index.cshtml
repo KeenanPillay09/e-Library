@@ -1,13 +1,13 @@
-﻿@model IEnumerable<e_Library.Core.Models.PreBook>
+﻿@model IEnumerable<e_Library.Core.Models.PreOrderBook>
 
 @{
-    ViewBag.Title = "Manage Pre-Order Books";
+    ViewBag.Title = "Manage Books";
 }
 
 <h2>Manage Pre-Order Books</h2>
 
 <p>
-    @Html.ActionLink("Add New Book", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
@@ -35,9 +35,9 @@
 
     @foreach (var item in Model)
     {
-<tr>
+    <tr>
     <td>
-        <img class="img-thumbnail" style="height:50px" src="~/Content/PreBookImages/@item.Image" />
+        <img class="img-thumbnail" style="height:50px" src="~/Content/BookImages/@item.Image" />
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Name)

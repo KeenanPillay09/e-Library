@@ -202,6 +202,14 @@
     <Compile Include="Migrations\202111040903522_AddReturnModel.designer.cs">
       <DependentUpon>202111040903522_AddReturnModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111090932089_AddedPreOrders.cs" />
+    <Compile Include="Migrations\202111090932089_AddedPreOrders.designer.cs">
+      <DependentUpon>202111090932089_AddedPreOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111091633325_UpdatePreOrderModel.cs" />
+    <Compile Include="Migrations\202111091633325_UpdatePreOrderModel.designer.cs">
+      <DependentUpon>202111091633325_UpdatePreOrderModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLRepository.cs" />
@@ -324,6 +332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202111040903522_AddReturnModel.resx">
       <DependentUpon>202111040903522_AddReturnModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111090932089_AddedPreOrders.resx">
+      <DependentUpon>202111090932089_AddedPreOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111091633325_UpdatePreOrderModel.resx">
+      <DependentUpon>202111091633325_UpdatePreOrderModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

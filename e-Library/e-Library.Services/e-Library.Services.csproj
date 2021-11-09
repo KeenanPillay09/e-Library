@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="BasketService.cs" />
     <Compile Include="OrderService.cs" />
+    <Compile Include="PreOrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

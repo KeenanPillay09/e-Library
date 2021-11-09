@@ -1,46 +1,48 @@
-﻿using e_Library.Core.Contracts;
-using e_Library.Core.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using e_Library.Core.Models;
 using e_Library.Core.ViewModels;
+using e_Library.DataAccess.InMemory;
+using e_Library.Core.Contracts;
 using System.IO;
+using System.Data;
 
-namespace e_Library.WebUI.Controllers
+namespace MyShop.WebUI.Controllers
 {
     [Authorize(Users = "21901959@dut4life.ac.za")]
-    public class PreBookManagerController : Controller
+    public class PreOrderBookManagerController : Controller
     {
-        IRepository<PreBook> context;
+        IRepository<PreOrderBook> context;
         IRepository<BookGenre> bookGenres;
         IRepository<BookAuthor> bookAuthors;
 
-        public PreBookManagerController(IRepository<PreBook> prebookContext, IRepository<BookGenre> bookGenreContext, IRepository<BookAuthor> bookAuthorContext) //Needs to inject Repositories from DI Container
+        public PreOrderBookManagerController(IRepository<PreOrderBook> bookContext, IRepository<BookGenre> bookGenreContext, IRepository<BookAuthor> bookAuthorContext) //Needs to inject Repositories from DI Container
         {
-            context = prebookContext;
+            context = bookContext;
             bookGenres = bookGenreContext;
             bookAuthors = bookAuthorContext;
         }
-        // GET: PreBookManager
+        // GET: BookManager
         public ActionResult Index()
         {
-            List<PreBook> books = context.Collection().ToList();
+            List<PreOrderBook> books = context.Collection().ToList();
             return View(books);
         }
 
         public ActionResult Create()
         {
-            PreBookManagerViewModel viewModel = new PreBookManagerViewModel();
+            PreOrderBookManagerViewModel viewModel = new PreOrderBookManagerViewModel();
 
-            viewModel.PreBook = new PreBook();
+            viewModel.Book = new PreOrderBook();
             viewModel.BookGenres = bookGenres.Collection();
             viewModel.BookAuthors = bookAuthors.Collection();
             return View(viewModel);
         }
         [HttpPost]
-        public ActionResult Create(PreBook book, HttpPostedFileBase file)
+        public ActionResult Create(PreOrderBook book, HttpPostedFileBase file)
         {
             if (!ModelState.IsValid)
             {
@@ -51,7 +53,7 @@ namespace e_Library.WebUI.Controllers
                 if (file != null)
                 {
                     book.Image = book.Id + Path.GetExtension(file.FileName);
-                    file.SaveAs(Server.MapPath("//Content//PreBookImages//") + book.Image);
+                    file.SaveAs(Server.MapPath("//Content//BookImages//") + book.Image);
                 }
                 context.Insert(book);
                 context.Commit();
@@ -62,24 +64,24 @@ namespace e_Library.WebUI.Controllers
 
         public ActionResult Edit(string Id)
         {
-            PreBook book = context.Find(Id);
+            PreOrderBook book = context.Find(Id);
             if (book == null)
             {
                 return HttpNotFound();
             }
             else
             {
-                PreBookManagerViewModel viewModel = new PreBookManagerViewModel();
-                viewModel.PreBook = book;
+                PreOrderBookManagerViewModel viewModel = new PreOrderBookManagerViewModel();
+                viewModel.Book = book;
                 viewModel.BookGenres = bookGenres.Collection();
                 viewModel.BookAuthors = bookAuthors.Collection();
                 return View(viewModel);
             }
         }
         [HttpPost]
-        public ActionResult Edit(PreBook book, string Id, HttpPostedFileBase file)
+        public ActionResult Edit(PreOrderBook book, string Id, HttpPostedFileBase file)
         {
-            PreBook bookToEdit = context.Find(Id);
+            PreOrderBook bookToEdit = context.Find(Id);
             if (bookToEdit == null)
             {
                 return HttpNotFound();
@@ -103,7 +105,6 @@ namespace e_Library.WebUI.Controllers
                 bookToEdit.Description = book.Description;
                 bookToEdit.Stock = book.Stock;
                 bookToEdit.Price = book.Price;
-                bookToEdit.ReleaseDate = book.ReleaseDate;
 
                 context.Commit();
 
@@ -114,7 +115,7 @@ namespace e_Library.WebUI.Controllers
 
         public ActionResult Delete(string Id)
         {
-            PreBook bookToDelete = context.Find(Id);
+            PreOrderBook bookToDelete = context.Find(Id);
 
             if (bookToDelete == null)
             {
@@ -129,7 +130,7 @@ namespace e_Library.WebUI.Controllers
         [ActionName("Delete")]
         public ActionResult ConfirmDelete(string Id)
         {
-            PreBook bookToDelete = context.Find(Id);
+            PreOrderBook bookToDelete = context.Find(Id);
 
             if (bookToDelete == null)
             {
@@ -141,6 +142,49 @@ namespace e_Library.WebUI.Controllers
                 context.Commit();
                 return RedirectToAction("Index");
             }
+        }
+
+        public ActionResult Dashboard()
+        {
+            List<PreOrderBook> list = context.Collection().Where(p => p.Stock > 0).ToList();
+            List<int> repartitons = new List<int>();
+
+            var totalsales = context.Collection().OrderBy(p => p.Name).OrderByDescending(p => p.Stock).ToList();
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("BookName", Type.GetType("System.String"));
+            dt.Columns.Add("Stock", System.Type.GetType("System.Int32"));
+
+            int iCnt = 0;
+            foreach (PreOrderBook book in totalsales)
+            {
+                //for (int i = 0; i < 5; i++)
+                //{
+                DataRow dr = dt.NewRow();
+                dr["BookName"] = book.Name;
+                dr["Stock"] = book.Stock;
+                dt.Rows.Add(dr);
+                iCnt++;
+                if (iCnt == 5)
+                {
+                    break;
+                }
+                //}
+                //bookName = "";
+                //stock = 0;
+            }
+
+            List<object> iData = new List<object>();
+            foreach (DataColumn dc in dt.Columns)
+            {
+                List<object> x = new List<object>();
+                x = (from DataRow drr in dt.Rows select drr[dc.ColumnName]).ToList();
+                iData.Add(x);
+            }
+            ViewBag.ChartData = iData;
+
+            return View();
+
         }
     }
 }

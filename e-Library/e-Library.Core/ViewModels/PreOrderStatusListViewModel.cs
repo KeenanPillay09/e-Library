@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace e_Library.Core.ViewModels
 {
-    public class PreBookListViewModel
+    public class PreOrderStatusListViewModel
     {
-        public IEnumerable<PreBook> PreBooks { get; set; }
-        public IEnumerable<BookGenre> BookGenres { get; set; }
+        public IEnumerable<PreOrder> Orders { get; set; }
+        public IEnumerable<PreOrderStatusModel> OrderStatusModels { get; set; }
     }
 }

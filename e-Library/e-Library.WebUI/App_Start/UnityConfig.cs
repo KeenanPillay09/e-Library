@@ -48,19 +48,22 @@ namespace e_Library.WebUI
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IRepository<Book>, SQLRepository<Book>>();
+            container.RegisterType<IRepository<PreOrderBook>, SQLRepository<PreOrderBook>>();
             container.RegisterType<IRepository<BookGenre>, SQLRepository<BookGenre>>();
             container.RegisterType<IRepository<BookAuthor>, SQLRepository<BookAuthor>>();
             container.RegisterType<IRepository<Basket>, SQLRepository<Basket>>();
             container.RegisterType<IRepository<BasketItem>, SQLRepository<BasketItem>>();
             container.RegisterType<IRepository<Customer>, SQLRepository<Customer>>();
             container.RegisterType<IRepository<Order>, SQLRepository<Order>>();
+            container.RegisterType<IRepository<PreOrder>, SQLRepository<PreOrder>>();
             container.RegisterType<IRepository<Driver>, SQLRepository<Driver>>();
             container.RegisterType<IRepository<OrderStatusModel>, SQLRepository<OrderStatusModel>>();
-            container.RegisterType<IRepository<PreBook>, SQLRepository<PreBook>>();
+            container.RegisterType<IRepository<PreOrderStatusModel>, SQLRepository<PreOrderStatusModel>>();
             container.RegisterType<IRepository<Return>, SQLRepository<Return>>();
 
             container.RegisterType<IBasketService, BasketService>();
             container.RegisterType<IOrderService, OrderService>();
+            container.RegisterType<IPreOrderService, PreOrderService>();
         }
     }
 }

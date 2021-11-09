@@ -211,7 +211,11 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrderManagerController.cs" />
     <Compile Include="Controllers\OrderStatusManagerController.cs" />
-    <Compile Include="Controllers\PreBookManagerController.cs" />
+    <Compile Include="Controllers\PreOrderBasketController.cs" />
+    <Compile Include="Controllers\PreOrderBookController.cs" />
+    <Compile Include="Controllers\PreOrderBookManagerController.cs" />
+    <Compile Include="Controllers\PreOrderManagerController.cs" />
+    <Compile Include="Controllers\PreOrderStatusManagerController.cs" />
     <Compile Include="Controllers\PurchaseBookController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -432,10 +436,6 @@
     <Content Include="Views\OrderStatusManager\Delete.cshtml" />
     <Content Include="Views\OrderManager\DisplayOrdersWithFilter.cshtml" />
     <Content Include="Views\OrderManager\PrepareOrderForDelivery.cshtml" />
-    <Content Include="Views\PreBookManager\Index.cshtml" />
-    <Content Include="Views\PreBookManager\Edit.cshtml" />
-    <Content Include="Views\PreBookManager\Delete.cshtml" />
-    <Content Include="Views\PreBookManager\Create.cshtml" />
     <Content Include="Views\OrderManager\DriverDeliveries.cshtml" />
     <Content Include="Views\OrderManager\PrepareOrderForCollection.cshtml" />
     <Content Include="Views\OrderManager\PrepareDelivery.cshtml" />
@@ -470,6 +470,28 @@
     <Content Include="Views\OrderManager\ApprovedReturns.cshtml" />
     <Content Include="Views\OrderManager\ReturnedItems.cshtml" />
     <Content Include="Views\OrderManager\CompleteReturns.cshtml" />
+    <Content Include="Views\PreOrderBook\Index.cshtml" />
+    <Content Include="Views\PreOrderBook\Details.cshtml" />
+    <Content Include="Views\PreOrderBookManager\Index.cshtml" />
+    <Content Include="Views\PreOrderBookManager\Create.cshtml" />
+    <Content Include="Views\PreOrderBookManager\Edit.cshtml" />
+    <Content Include="Views\PreOrderBookManager\Delete.cshtml" />
+    <Content Include="Views\PreOrderManager\DisplayOrdersWithFilter.cshtml" />
+    <Content Include="Views\PreOrderStatusManager\Index.cshtml" />
+    <Content Include="Views\PreOrderStatusManager\Create.cshtml" />
+    <Content Include="Views\PreOrderStatusManager\Edit.cshtml" />
+    <Content Include="Views\PreOrderStatusManager\Delete.cshtml" />
+    <Content Include="Views\PreOrderBasket\Checkout.cshtml" />
+    <Content Include="Views\PreOrderBasket\OrderSummary.cshtml" />
+    <Content Include="Views\PreOrderManager\DriverDeliveries.cshtml" />
+    <Content Include="Views\PreOrderManager\NorthDeliveries.cshtml" />
+    <Content Include="Views\PreOrderManager\CentralDeliveries.cshtml" />
+    <Content Include="Views\PreOrderManager\SouthDeliveries.cshtml" />
+    <Content Include="Views\PreOrderManager\OuterWestDeliveries.cshtml" />
+    <Content Include="Views\PreOrderManager\InnerWestDeliveries.cshtml" />
+    <Content Include="Views\PreOrderManager\PrepareOrderForDelivery.cshtml" />
+    <Content Include="Views\PreOrderManager\DelayOrder.cshtml" />
+    <Content Include="Views\PreOrderManager\PrepareDelivery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

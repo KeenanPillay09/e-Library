@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace e_Library.Core.Models
 {
-    public class PreBook : BaseEntity
+    public class PreOrderBook : BaseEntity
     {
+
         [DisplayName("Book Name")]
         [StringLength(300)]
         public string Name { get; set; }
@@ -26,15 +27,17 @@ namespace e_Library.Core.Models
         public int Stock { get; set; }
         public string Image { get; set; }
 
+        //[DisplayName("Number of Sales")]
+        //public int NumSales { get; set; }
+
+        //[DisplayName("Number of Orders")]
+        //public int NumOrders { get; set; }
+
+        //[DisplayName("Total Sales")]
+        //public decimal TotalSales { get; set; }
         [DisplayName("Release Date")]
         [DataType(DataType.Date)]
         public DateTime? ReleaseDate { get; set; }
-
-        public PreBook()
-        {
-            this.ReleaseDate = DateTime.Now;
-        }
-
 
     }
 }
