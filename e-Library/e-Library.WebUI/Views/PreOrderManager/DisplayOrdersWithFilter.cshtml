@@ -52,19 +52,19 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OrderStatus)
                 </td>
-                <td>
+                @*<td>
                     <div class="btn-group">
                         <a href="@Url.Action("UpdateOrder","PreOrderManager", new { Id=item.Id })" class="btn btn-default">Manage Order</a>
                         <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="@Url.Action("UpdateOrder","PreOrderManager", new { Id=item.Id })">Update Order</a></li>
                             <li><a href="@Url.Action("GenerateQRCode","PreOrderManager", new { Id=item.Id })">Generate QR Code</a></li>
-                            @*<li><a href="#">Something else here</a></li>*@
+                            <li><a href="#">Something else here</a></li>
                             <li class="divider"></li>
                             <li><a href="@Url.Action("DriverPortal","PreOrderManager", new { Id=item.Id })">Driver Portal</a></li>
                         </ul>
                     </div>
-                </td>
+                </td>*@
             </tr>
 }
 

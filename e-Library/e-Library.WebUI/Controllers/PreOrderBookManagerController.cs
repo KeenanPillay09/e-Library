@@ -18,12 +18,14 @@ namespace MyShop.WebUI.Controllers
         IRepository<PreOrderBook> context;
         IRepository<BookGenre> bookGenres;
         IRepository<BookAuthor> bookAuthors;
+        IRepository<Book> Books;
 
-        public PreOrderBookManagerController(IRepository<PreOrderBook> bookContext, IRepository<BookGenre> bookGenreContext, IRepository<BookAuthor> bookAuthorContext) //Needs to inject Repositories from DI Container
+        public PreOrderBookManagerController(IRepository<PreOrderBook> bookContext, IRepository<Book> Bookcontext, IRepository<BookGenre> bookGenreContext, IRepository<BookAuthor> bookAuthorContext) //Needs to inject Repositories from DI Container
         {
             context = bookContext;
             bookGenres = bookGenreContext;
             bookAuthors = bookAuthorContext;
+            Books = Bookcontext;
         }
         // GET: BookManager
         public ActionResult Index()
@@ -105,6 +107,7 @@ namespace MyShop.WebUI.Controllers
                 bookToEdit.Description = book.Description;
                 bookToEdit.Stock = book.Stock;
                 bookToEdit.Price = book.Price;
+                bookToEdit.ReleaseDate = book.ReleaseDate;
 
                 context.Commit();
 
@@ -144,47 +147,58 @@ namespace MyShop.WebUI.Controllers
             }
         }
 
-        public ActionResult Dashboard()
+        //Release Pre-Order Books
+        public ActionResult ViewPreOrderBookReleases()
         {
-            List<PreOrderBook> list = context.Collection().Where(p => p.Stock > 0).ToList();
-            List<int> repartitons = new List<int>();
+            List<PreOrderBook> books = context.Collection().OrderBy(p=>p.ReleaseDate).ToList();
+            return View(books);
+        }
 
-            var totalsales = context.Collection().OrderBy(p => p.Name).OrderByDescending(p => p.Stock).ToList();
+        public ActionResult PublishBook(string Id)
+        {
+            PreOrderBook preOrderbook = context.Find(Id);
 
-            DataTable dt = new DataTable();
-            dt.Columns.Add("BookName", Type.GetType("System.String"));
-            dt.Columns.Add("Stock", System.Type.GetType("System.Int32"));
+            Book book = new Book();
 
-            int iCnt = 0;
-            foreach (PreOrderBook book in totalsales)
+            book.Name = preOrderbook.Name;
+            book.Author = preOrderbook.Author;
+            book.Description = preOrderbook.Description;
+            book.Genre = preOrderbook.Genre;
+            book.Price = preOrderbook.Price;
+            book.Stock = preOrderbook.Stock;
+
+            return View(book);
+        }
+        [HttpPost]
+        public ActionResult PublishBook(Book book, HttpPostedFileBase file)
+        {
+            string preOrderBookId = book.Id;
+
+            //Remove from Pre-Order Books
+            //PreOrderBook preOrderbook = context.Find(preOrderBookId);
+            //context.Delete(preOrderBookId);
+            //context.Commit();
+
+            //Move to Books
+            book.Id = Guid.NewGuid().ToString();
+
+            if (!ModelState.IsValid)
             {
-                //for (int i = 0; i < 5; i++)
-                //{
-                DataRow dr = dt.NewRow();
-                dr["BookName"] = book.Name;
-                dr["Stock"] = book.Stock;
-                dt.Rows.Add(dr);
-                iCnt++;
-                if (iCnt == 5)
+                return View(book);
+            }
+            else
+            {
+                if (file != null)
                 {
-                    break;
+                    book.Image = book.Id + Path.GetExtension(file.FileName);
+                    file.SaveAs(Server.MapPath("//Content//BookImages//") + book.Image);
                 }
-                //}
-                //bookName = "";
-                //stock = 0;
+
+                Books.Insert(book);
+                Books.Commit();
+
+                return RedirectToAction("ViewPreOrderBookReleases");
             }
-
-            List<object> iData = new List<object>();
-            foreach (DataColumn dc in dt.Columns)
-            {
-                List<object> x = new List<object>();
-                x = (from DataRow drr in dt.Rows select drr[dc.ColumnName]).ToList();
-                iData.Add(x);
-            }
-            ViewBag.ChartData = iData;
-
-            return View();
-
         }
     }
 }

@@ -16,6 +16,7 @@
                 @Html.ActionLink("Manage Genres", "Index", "BookGenreManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Manage Authors", "Index", "BookAuthorManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Manage Pre-Order Books", "Index", "PreOrderBookManager", null, new { @class = "list-group-item" })
+                @Html.ActionLink("Release Pre-Order Books", "ViewPreOrderBookReleases", "PreOrderBookManager", null, new { @class = "list-group-item" })
             </div>
         </div>
     </div>
@@ -27,8 +28,7 @@
         </div>
         <div class="panel-body">
             <div class="list-group">
-                @Html.ActionLink("Display Current Orders", "DisplayOrdersWithFilter", "OrderManager", null, new { @class = "list-group-item" })
-                @Html.ActionLink("Display Pre-Orders", "DisplayOrdersWithFilter", "PreOrderManager", null, new { @class = "list-group-item" })
+                @Html.ActionLink("Display Current Orders", "DisplayOrdersWithFilter", "OrderManager", null, new { @class = "list-group-item" })          
                 @Html.ActionLink("Prepare for Delivery", "PrepareOrderForDelivery", "OrderManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Prepare for Collection", "PrepareOrderForCollection", "OrderManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Driver Deliveries", "DriverDeliveries", "OrderManager", null, new { @class = "list-group-item" })
@@ -51,7 +51,7 @@
                 @Html.ActionLink("Prepare for Delivery", "PrepareOrderForDelivery", "PreOrderManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Driver Deliveries", "DriverDeliveries", "PreOrderManager", null, new { @class = "list-group-item" })
                 @Html.ActionLink("Manage Drivers", "Index", "DriverManager", null, new { @class = "list-group-item" })
-                @Html.ActionLink("Manage Returns", "DisplayReturns", "OrderManager", null, new { @class = "list-group-item" })
+                @Html.ActionLink("Manage Pre-Order Returns", "DisplayReturns", "PreOrderManager", null, new { @class = "list-group-item" })
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
         </div>
         <div class="panel-body">
             @Html.ActionLink("View Most Popular Book", "ShowMostPopular", "Chart", new { chart = "Popular" }, new { @class = "list-group-item" }) @*NumOrders*@
-            @Html.ActionLink("View Book Most Number of Sales", "ShowNumberSales", "Chart", new { chart = "Popular" }, new { @class = "list-group-item" }) @*NumSales*@
+            @Html.ActionLink("View Number of Sales", "ShowNumberSales", "Chart", new { chart = "Popular" }, new { @class = "list-group-item" }) @*NumSales*@
             @Html.ActionLink("View Book Most Total Sales", "ShowTotalSales", "Chart", new { chart = "Popular" }, new { @class = "list-group-item" }) @*TotalSales*@
             @Html.ActionLink("View Books with Lowest Stock", "ShowLowStock", "Chart", new { chart = "Popular" }, new { @class = "list-group-item" }) @*Stock*@
             @Html.ActionLink("View Google Analytics & Data", "ViewAnalytics", "OrderManager", null, new { @class = "list-group-item" })

@@ -47,11 +47,11 @@ namespace e_Library.WebUI.Controllers
 
             if (Status == null)
             {
-                orders = orderService.GetPreOrderList().Where(p => p.OrderStatus != "Order Complete").ToList();
+                orders = orderService.GetPreOrderList().Where(p => p.OrderStatus != "Order Complete").OrderByDescending(p => p.CreatedAt).ToList();
             }
             else
             {
-                orders = orderService.GetPreOrderList().Where(p => p.OrderStatus == Status).ToList();
+                orders = orderService.GetPreOrderList().Where(p => p.OrderStatus == Status).OrderByDescending(p => p.CreatedAt).ToList();
             }
 
             PreOrderStatusListViewModel model = new PreOrderStatusListViewModel();
@@ -66,7 +66,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult DriverDeliveries()
         {
             List<PreOrder> orders = orderService.GetPreOrderList();
-            orders = orderService.GetPreOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete"))).ToList();
+            orders = orderService.GetPreOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete"))).OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -75,7 +75,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult NorthDeliveries()
         {
             List<PreOrder> orders = orderService.GetPreOrderList();
-            orders = orderService.GetPreOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete") && (p.Suburb == "North"))).ToList();
+            orders = orderService.GetPreOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete") && (p.Suburb == "North"))).OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -83,7 +83,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult CentralDeliveries()
         {
             List<PreOrder> orders = orderService.GetPreOrderList();
-            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Central").ToList();
+            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Central").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -91,7 +91,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult SouthDeliveries()
         {
             List<PreOrder> orders = orderService.GetPreOrderList();
-            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "South").ToList();
+            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "South").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -99,7 +99,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult OuterWestDeliveries()
         {
             List<PreOrder> orders = orderService.GetPreOrderList();
-            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Outer West").ToList();
+            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Outer West").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -107,7 +107,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult InnerWestDeliveries()
         {
             List<PreOrder> orders = orderService.GetPreOrderList();
-            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Inner West").ToList();
+            orders = orderService.GetPreOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Inner West").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -115,7 +115,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult PrepareOrderForDelivery()
         {
             List<PreOrder> orders = orderService.GetPreOrderList();
-            orders = orderService.GetPreOrderList().Where(p => p.OrderStatus == "Delivery Required" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery")).ToList();
+            orders = orderService.GetPreOrderList().Where(p => p.OrderStatus == "Delivery Required" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery")).OrderBy(p => p.DeliveryDate).ToList();
             return View(orders);
         }
 
@@ -158,6 +158,7 @@ namespace e_Library.WebUI.Controllers
 
             //Generate and Save QR Code
             string qrcode = "https://localhost:44317/DriverPortal/UpdateOrder/" + Id;
+            //deploy string qrcode = "https://2021grp09.azurewebsites.net/PreOrderManager/DriverPortal/UpdateOrder/" + Id;
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -364,42 +365,176 @@ namespace e_Library.WebUI.Controllers
             orderService.UpdatePreOrder(order);
 
             return RedirectToAction("DriverDeliveries");
-        }
+        }    
 
-        public ActionResult CollectionDelay(string Id)
+
+        //Driver Portal
+        public ActionResult DriverPortal(string Id)
         {
-            ViewBag.StatusList = new List<string>() {
-                "Order Created",
-                "Payment Processed",
-                "Delivery Required",
-                "Out for Delivery",
-                "Order Complete"
-            };
-
             PreOrder order = orderService.GetPreOrder(Id);
-
-            order.DeliveryDate = order.DeliveryDate;
+            order.OrderStatus = "Order Complete";
+            orderService.UpdatePreOrder(order);
 
             return View(order);
         }
 
-        [HttpPost]
-        public ActionResult CollectionDelay(PreOrder updatedOrder, string Id)
+        public ActionResult ViewAllOrders(string Email)
+        {
+            List<PreOrder> orders;
+            orders = orderService.GetPreOrderList().Where(p => p.Email == Email).OrderByDescending(p => p.CreatedAt).ToList();
+            return View(orders);
+        }
+
+        //Return
+        public ActionResult ReturnOrder(string Id)
         {
             PreOrder order = orderService.GetPreOrder(Id);
 
-            //order.OrderStatus = updatedOrder.OrderStatus;
-            //order.Driver = updatedOrder.Driver;
-            order.DeliveryDate = updatedOrder.DeliveryDate;
+            PreOrderReturn returns = new PreOrderReturn();
 
-            //Send Email to Customer notifying them of the delay
-            string customer = order.Email; //Returns the customers email
-            string fname = order.FirstName; //Returns the customers first name
+            returns.CustomerName = order.FirstName + " " + order.LastName;
+            returns.Email = order.Email;
+            returns.OrderID = order.Id;
 
+
+            return View(returns);
+        }
+        [HttpPost]
+        public ActionResult ReturnOrder(PreOrderReturn returns)
+        {
+            returns.Id = null;
+            returns.Status = "Pending";
+
+            PreOrderReturn returnedOrder = new PreOrderReturn();
+
+            returnedOrder.OrderID = returns.OrderID;
+            returnedOrder.CustomerName = returns.CustomerName;
+            returnedOrder.Email = returns.Email;
+            returnedOrder.Reason = returns.Reason;
+            returnedOrder.RefundType = returns.RefundType;
+            returnedOrder.Status = returns.Status;
+
+            orderService.CreateReturn(returnedOrder);
+
+            return View("ReturnConfirmationPage");
+        }
+        public ActionResult ReturnConfirmationPage()
+        {
+            return View();
+        }
+        //Admin
+
+        public ActionResult DisplayReturns(string Status = null)
+        {
+            List<PreOrderReturn> returns;
+
+            if (Status == null)
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == "Pending").OrderBy(p => p.CreatedAt).ToList();
+            }
+            else
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).OrderBy(p => p.CreatedAt).ToList();
+            }
+            return View(returns);
+        }
+        public ActionResult ApprovedReturns(string Status = null)
+        {
+            //List<Return> returns = orderService.GetReturnList().Where(p => p.Status == "Approved").ToList();
+            //return View(returns);
+            List<PreOrderReturn> returns;
+
+            if (Status == null)
+            {
+                returns = orderService.GetReturnList();
+            }
+            else
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).OrderBy(p => p.CreatedAt).ToList();
+            }
+            return View(returns);
+        }
+
+        public ActionResult CompleteReturns(string Status = null)
+        {
+            List<PreOrderReturn> returns;
+
+            if (Status == null)
+            {
+                returns = orderService.GetReturnList();
+            }
+            else
+            {
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).OrderBy(p => p.CreatedAt).ToList();
+            }
+            return View(returns);
+        }
+
+
+        public ActionResult ReturnedItems(string Id, string OrderId)
+        {
+            PreOrder order = orderService.GetPreOrder(OrderId);
+
+            orderService.UpdateReturnedStock(order);
+
+            PreOrderReturn returnOrder = orderService.GetOrderReturn(Id);
+            returnOrder.Status = "Return Complete";
+            orderService.UpdateReturn(returnOrder);
+
+            return RedirectToAction("DisplayReturns");
+        }
+
+
+        public ActionResult ManageReturn(string Id, string OrderId) //Id is the Return ID
+        {
+            ViewBag.StatusList = new List<string>() {
+                "Pending",
+                "Approved",
+                "Rejected"
+            };
+
+            //Order order = orderService.GetOrder(Id);
+            PreOrderReturn returnOrder = orderService.GetOrderReturn(Id);
+
+            //returnOrder.OrderID = OrderId;
+
+            return View(returnOrder);
+        }
+
+        [HttpPost]
+        public ActionResult ManageReturn(PreOrderReturn returnedOrder, string Id)
+        {
+            PreOrderReturn returnOrder = orderService.GetOrderReturn(Id);
+
+            returnOrder.Status = returnedOrder.Status;
+            string retStatus = returnedOrder.Status;
+
+            orderService.UpdateReturn(returnOrder);
+
+
+
+            //Send Email to Customer
+            string customer = returnOrder.Email; //Returns the customers email
+            string fname = returnOrder.CustomerName; //Returns the customers first name
+
+            string message = "";
+
+            if (retStatus == "Approved")
+            {
+                message = "Hi " + fname + " Your order has been approved for return. Please drop off the order at the address below to receive your refund! <br/>" +
+                "e-Library Address: Anton Lembede St, Durban Central, Durban, 4000 <br/>" +
+                "Hours: 8am - 5pm (Monday-Sunday)";
+            }
+            else if (retStatus == "Rejected")
+            {
+                message = "Hi " + fname + " Unfortunately your order return request has been rejected. This is due to the 48 hour return period expiring! <br/>" +
+                "We hope to see you soon!";
+
+            }
 
             string receiver = customer;
-            string subject = "E-Library Order Delivery Delay  ";
-            string message = "Hi " + fname + " Your order has not been collected on the given date.The order can now be collected on the " + (order.DeliveryDate) + " See you soon!";
+            string subject = "E-Library Order Return";
+
 
             try
             {
@@ -432,99 +567,8 @@ namespace e_Library.WebUI.Controllers
                 ViewBag.Error = "Some Error";
             }
 
-
-            orderService.UpdatePreOrder(order);
-
-            return RedirectToAction("DriverDeliveries");
+            return RedirectToAction("DisplayReturns");
         }
 
-
-
-        //Driver Portal
-        public ActionResult DriverPortal(string Id)
-        {
-            PreOrder order = orderService.GetPreOrder(Id);
-            order.OrderStatus = "Order Complete";
-            orderService.UpdatePreOrder(order);
-
-            return View(order);
-        }
-        //[HttpPost]
-        //public ActionResult DriverPortal(Order updatedOrder, string Id)
-        //{
-        //    //Updating Order Status
-        //    Order order = orderService.GetOrder(Id);
-
-        //    order.OrderStatus = updatedOrder.OrderStatus;
-
-        //    orderService.UpdateOrder(order);
-
-
-        //    return RedirectToAction("Index");
-        //}
-        //Collection Portal
-        public ActionResult CollectionPortal(string Id)
-        {
-            PreOrder order = orderService.GetPreOrder(Id);
-            order.OrderStatus = "Order Complete";
-            orderService.UpdatePreOrder(order);
-
-            return View(order);
-        }
-
-        //Generating QR Code
-        public ActionResult GenerateQRCode(string id)
-        {
-            ViewBag.qrcode = "https://localhost:44317/DriverPortal/UpdateOrder/" + id;
-            // ViewBag.qrcode = "https://2021grp09.azurewebsites.net/OrderManager/DriverPortal/" + id;
-
-            return View();
-        }
-        [HttpPost]
-        public ActionResult QRCode(string qrcode)
-        {
-            using (MemoryStream ms = new MemoryStream())
-            {
-                QRCodeGenerator qRCodeGenerator = new QRCodeGenerator();
-                QRCodeData qRCodeData = qRCodeGenerator.CreateQrCode(qrcode, QRCodeGenerator.ECCLevel.Q);
-                QRCode qrCode = new QRCode(qRCodeData);
-
-                using (Bitmap bitmap = qrCode.GetGraphic(20))
-                {
-                    bitmap.Save(ms, ImageFormat.Png);
-                    ViewBag.QRCodeImage = "data:image/png;base64," + Convert.ToBase64String(ms.ToArray());
-                }
-            }
-
-            return View("GenerateQRCode");
-        }
-
-
-        [Authorize(Users = "21901959@dut4life.ac.za")]
-        public ActionResult ViewAnalytics()
-        {
-            string url = "";
-
-            url = "https://analytics.google.com/analytics/web/?hl=en&pli=1#/p286465082/reports/reportinghub";                                                                                                                                                                                     // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
-
-            return Redirect(url);
-        }
-
-        //Customer Portal
-
-        public ActionResult ViewAllOrders(string Email)
-        {
-            List<PreOrder> orders;
-            orders = orderService.GetPreOrderList().Where(p => p.Email == Email).ToList();
-            return View(orders);
-        }
-
-        //Return
-        public ActionResult ReturnOrder(string Id)
-        {
-            PreOrder order = orderService.GetPreOrder(Id);
-
-            return View(order);
-        }
     }
 }

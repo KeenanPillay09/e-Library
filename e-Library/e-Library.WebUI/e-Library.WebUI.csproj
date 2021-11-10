@@ -492,6 +492,18 @@
     <Content Include="Views\PreOrderManager\PrepareOrderForDelivery.cshtml" />
     <Content Include="Views\PreOrderManager\DelayOrder.cshtml" />
     <Content Include="Views\PreOrderManager\PrepareDelivery.cshtml" />
+    <Content Include="Views\PreOrderManager\DriverPortal.cshtml" />
+    <Content Include="Views\PreOrderBookManager\ViewPreOrderBookReleases.cshtml" />
+    <Content Include="Views\PreOrderBookManager\PublishBook.cshtml" />
+    <Content Include="Views\PreOrderManager\UpdateOrder.cshtml" />
+    <Content Include="Views\PreOrderManager\ViewAllOrders.cshtml" />
+    <Content Include="Views\PreOrderManager\ReturnOrder.cshtml" />
+    <Content Include="Views\PreOrderManager\ReturnConfirmationPage.cshtml" />
+    <Content Include="Views\PreOrderManager\DisplayReturns.cshtml" />
+    <Content Include="Views\PreOrderManager\ApprovedReturns.cshtml" />
+    <Content Include="Views\PreOrderManager\CompleteReturns.cshtml" />
+    <Content Include="Views\PreOrderManager\ReturnedItems.cshtml" />
+    <Content Include="Views\PreOrderManager\ManageReturn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

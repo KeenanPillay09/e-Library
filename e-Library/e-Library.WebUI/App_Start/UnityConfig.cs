@@ -60,6 +60,7 @@ namespace e_Library.WebUI
             container.RegisterType<IRepository<OrderStatusModel>, SQLRepository<OrderStatusModel>>();
             container.RegisterType<IRepository<PreOrderStatusModel>, SQLRepository<PreOrderStatusModel>>();
             container.RegisterType<IRepository<Return>, SQLRepository<Return>>();
+            container.RegisterType<IRepository<PreOrderReturn>, SQLRepository<PreOrderReturn>>();
 
             container.RegisterType<IBasketService, BasketService>();
             container.RegisterType<IOrderService, OrderService>();

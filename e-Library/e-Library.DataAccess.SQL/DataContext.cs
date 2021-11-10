@@ -30,6 +30,7 @@ namespace e_Library.DataAccess.SQL
         public DbSet<OrderStatusModel> OrderStatusModels { get; set; }
         public DbSet<PreOrderStatusModel> PreOrderStatusModels { get; set; }
         public DbSet<Return> Returns { get; set; }
+        public DbSet<PreOrderReturn> PreOrderReturns { get; set; }
 
     }
 }

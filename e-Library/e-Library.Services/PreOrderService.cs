@@ -12,9 +12,13 @@ namespace e_Library.Services
     public class PreOrderService : IPreOrderService
     {
         IRepository<PreOrder> orderContext;
-        public PreOrderService(IRepository<PreOrder> OrderContext)
+        IRepository<PreOrderReturn> returnContext;
+        IRepository<PreOrderBook> bookContext;
+        public PreOrderService(IRepository<PreOrder> OrderContext, IRepository<PreOrderReturn> ReturnContext, IRepository<PreOrderBook> BookContext)
         {
             this.orderContext = OrderContext;
+            this.returnContext = ReturnContext;
+            this.bookContext = BookContext;
         }
 
         public void CreatePreOrder(PreOrder baseOrder)
@@ -37,6 +41,45 @@ namespace e_Library.Services
         {
             orderContext.Update(updatedOrder);
             orderContext.Commit();
+        }
+
+        public List<PreOrderReturn> GetReturnList() //Returns list of returns
+        {
+            return returnContext.Collection().ToList();
+        }
+
+        public PreOrderReturn GetOrderReturn(string Id) //Returns an individual return
+        {
+            return returnContext.Find(Id);
+        }
+
+        public void CreateReturn(PreOrderReturn returnedOrder)
+        {
+            returnContext.Insert(returnedOrder);
+            returnContext.Commit();
+        }
+
+        public void UpdateReturn(PreOrderReturn updatedReturn)
+        {
+            returnContext.Update(updatedReturn);
+            returnContext.Commit();
+        }
+
+        public void UpdateReturnedStock(PreOrder ordertoReturn)
+        {
+
+            string bName = "";
+            bName = ordertoReturn.BookName;
+
+            PreOrderBook book = new PreOrderBook();
+            var findBookId = bookContext.Collection().Where(d => d.Name == bName).FirstOrDefault();
+            string newId = findBookId.Id;
+
+
+            PreOrderBook bookToEdit = bookContext.Find(newId);
+            bookToEdit.Stock -= 1;
+            bookContext.Commit();
+            
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿@model IEnumerable<e_Library.Core.Models.Order>
+﻿@model IEnumerable<e_Library.Core.Models.PreOrder>
 
-<h2>My Orders</h2>
+<h2>My Pre-Orders</h2>
 
 <br />
 
@@ -53,15 +53,15 @@
         <td>
             @if (item.OrderStatus == "Order Complete")
             {
-                <a href="@Url.Action("ReturnOrder", "OrderManager", new { Id = item.Id })" class="btn btn-warning">Return Order</a>
+                <a href="@Url.Action("ReturnOrder", "PreOrderManager", new { Id = item.Id })" class="btn btn-warning">Return Order</a>
             }
             else
             {
-                <a href="@Url.Action("ReturnOrder", "OrderManager", new { Id = item.Id })" class="btn btn-danger disabled">Return Order</a>
+                <a href="@Url.Action("ReturnOrder", "PreOrderManager", new { Id = item.Id })" class="btn btn-danger disabled">Return Order</a>
             }
-        </td>
-        
+           </td>
         </tr>
     }
 
 </table>
+

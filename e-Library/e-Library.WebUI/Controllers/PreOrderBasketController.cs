@@ -62,10 +62,17 @@ namespace e_Library.WebUI.Controllers
         [Authorize]
         public ActionResult Checkout(PreOrder order)
         {
+            //Generating Id for Order
             order.Id = Guid.NewGuid().ToString();
 
-
+            //Searching for the book that is chosen
             var book = preOrderBooks.Collection().Where(p => p.Name == order.BookName).FirstOrDefault();
+
+            //Update Book Stock -1
+            book.Stock -= 1;
+            preOrderBooks.Commit();
+
+            //Setting BookId
             order.BookId = book.Id;
 
             order.OrderStatus = "Order Created";
@@ -110,7 +117,7 @@ namespace e_Library.WebUI.Controllers
 
             fTotal = Decimal.Ceiling(fTotal);
             url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=peakylibrary@outlook.com&item_name=Books&return=https://localhost:44349/Basket/ThankYou/"; //localhost
-                                                                                                                                                                                                         // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
+            // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/PreOrderBasket/ThankYou"; //deploy                                                                                                                                                                                             // url = "https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_xclick&amount=" + (fTotal) + "&business=JanjuaTailors@Shop.com&item_name=Books&return=https://2021grp09.azurewebsites.net/Basket/ThankYou"; //deploy
 
             return Redirect(url);
         }

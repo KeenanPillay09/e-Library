@@ -47,11 +47,11 @@ namespace e_Library.WebUI.Controllers
 
             if (Status == null)
             {
-                orders = orderService.GetOrderList().Where(p => p.OrderStatus != "Order Complete").ToList();
+                orders = orderService.GetOrderList().Where(p => p.OrderStatus != "Order Complete").OrderByDescending(p => p.CreatedAt).ToList();
             }
             else
             {
-                orders = orderService.GetOrderList().Where(p => p.OrderStatus == Status).ToList();
+                orders = orderService.GetOrderList().Where(p => p.OrderStatus == Status).OrderByDescending(p => p.CreatedAt).ToList();
             }
 
             OrderStatusListViewModel model = new OrderStatusListViewModel();
@@ -66,7 +66,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult OrderCollections()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => (p.Driver == "No Driver Required" && (p.DeliveryMethod == "Normal Collection" || p.DeliveryMethod == "Delayed Collection") && (p.OrderStatus == "Order Ready"))).ToList();
+            orders = orderService.GetOrderList().Where(p => (p.Driver == "No Driver Required" && (p.DeliveryMethod == "Normal Collection" || p.DeliveryMethod == "Delayed Collection") && (p.OrderStatus == "Order Ready"))).OrderBy(p=>p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -75,7 +75,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult DriverDeliveries()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete"))).ToList();
+            orders = orderService.GetOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete"))).OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -84,7 +84,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult NorthDeliveries()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete") && (p.Suburb == "North"))).ToList();
+            orders = orderService.GetOrderList().Where(p => (p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && (p.OrderStatus != "Order Complete") && (p.Suburb == "North"))).OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -92,7 +92,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult CentralDeliveries()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Central").ToList();
+            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Central").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -100,7 +100,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult SouthDeliveries()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "South").ToList();
+            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "South").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -108,7 +108,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult OuterWestDeliveries()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Outer West").ToList();
+            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Outer West").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -116,7 +116,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult InnerWestDeliveries()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Inner West").ToList();
+            orders = orderService.GetOrderList().Where(p => p.Driver != "" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery") && p.OrderStatus == "Order Ready" && p.Suburb == "Inner West").OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -124,7 +124,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult PrepareOrderForDelivery()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => p.OrderStatus == "Delivery Required" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery")).ToList();
+            orders = orderService.GetOrderList().Where(p => p.OrderStatus == "Delivery Required" && (p.DeliveryMethod == "Standard Delivery" || p.DeliveryMethod == "Express Delivery")).OrderBy(p => p.DeliveryDate).ToList();
             return View(orders);
         }
 
@@ -167,6 +167,7 @@ namespace e_Library.WebUI.Controllers
 
             //Generate and Save QR Code
             string qrcode = "https://localhost:44317/DriverPortal/UpdateOrder/" + Id;
+            //deploy string qrcode = "https://2021grp09.azurewebsites.net/OrderManager/DriverPortal/UpdateOrder/" + Id;
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -274,7 +275,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult PrepareOrderForCollection()
         {
             List<Order> orders = orderService.GetOrderList();
-            orders = orderService.GetOrderList().Where(p => (p.OrderStatus == "Pending Collection" && (p.DeliveryMethod == "Normal Collection" || p.DeliveryMethod == "Delayed Collection"))).ToList();
+            orders = orderService.GetOrderList().Where(p => (p.OrderStatus == "Pending Collection" && (p.DeliveryMethod == "Normal Collection" || p.DeliveryMethod == "Delayed Collection"))).OrderBy(p => p.DeliveryDate).ToList();
 
             return View(orders);
         }
@@ -291,6 +292,7 @@ namespace e_Library.WebUI.Controllers
 
             //Generate and Save QR Code
             string qrcode = "https://localhost:44317/CollectionPortal/UpdateOrder/" + Id;
+            //deploy string qrcode = "https://2021grp09.azurewebsites.net/OrderManager/CollectionPortal/UpdateOrder/" + Id;
 
             using (MemoryStream ms = new MemoryStream())
             {
@@ -605,7 +607,7 @@ namespace e_Library.WebUI.Controllers
         public ActionResult ViewAllOrders(string Email)
         {
             List<Order> orders;
-            orders = orderService.GetOrderList().Where(p => p.Email == Email).ToList();
+            orders = orderService.GetOrderList().Where(p => p.Email == Email).OrderByDescending(p => p.CreatedAt).ToList();
             return View(orders);
         }
 
@@ -656,11 +658,11 @@ namespace e_Library.WebUI.Controllers
 
             if (Status == null)
             {
-                returns = orderService.GetReturnList().Where(p => p.Status == "Pending").ToList();
+                returns = orderService.GetReturnList().Where(p => p.Status == "Pending").OrderBy(p => p.CreatedAt).ToList();
             }
             else
             {
-                returns = orderService.GetReturnList().Where(p => p.Status == Status).ToList();
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).OrderBy(p => p.CreatedAt).ToList();
             }
             return View(returns);
         }
@@ -676,7 +678,7 @@ namespace e_Library.WebUI.Controllers
             }
             else
             {
-                returns = orderService.GetReturnList().Where(p => p.Status == Status).ToList();
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).OrderBy(p => p.CreatedAt).ToList();
             }
             return View(returns);
         }
@@ -691,7 +693,7 @@ namespace e_Library.WebUI.Controllers
             }
             else
             {
-                returns = orderService.GetReturnList().Where(p => p.Status == Status).ToList();
+                returns = orderService.GetReturnList().Where(p => p.Status == Status).OrderBy(p => p.CreatedAt).ToList();
             }
             return View(returns);
         }

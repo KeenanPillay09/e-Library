@@ -67,6 +67,7 @@
     <Compile Include="Models\PreOrder.cs" />
     <Compile Include="Models\PreOrderBook.cs" />
     <Compile Include="Models\PreOrderItem.cs" />
+    <Compile Include="Models\PreOrderReturn.cs" />
     <Compile Include="Models\PreOrderStatusModel.cs" />
     <Compile Include="Models\Return.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

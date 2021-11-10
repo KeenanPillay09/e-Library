@@ -14,6 +14,11 @@ namespace e_Library.Core.Contracts
         List<PreOrder> GetPreOrderList();
         PreOrder GetPreOrder(string Id);
         void UpdatePreOrder(PreOrder updatedOrder);
+        List<PreOrderReturn> GetReturnList();
+        PreOrderReturn GetOrderReturn(string Id);
+        void CreateReturn(PreOrderReturn returnedOrder);
+        void UpdateReturn(PreOrderReturn updatedReturn);
+        void UpdateReturnedStock(PreOrder ordertoReturn);
 
     }
 }
